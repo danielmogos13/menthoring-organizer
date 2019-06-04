@@ -1,0 +1,36 @@
+.timeInterval {
+  padding-left: 25px;
+  display: flex;
+  align-items: baseline;
+  color: white;
+  .timeNav {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    button{
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 25px;
+      color: white;
+      &:focus {
+        outline: none;
+      }
+      &.decreaseDateButton {
+        &:after{
+          content: '◀';
+        }
+      }
+      &.increaseDateButton {
+        &:after{
+          content: '▶';
+        }
+      }
+    }
+    span {
+      width: 90px;
+    }
+
+  }
+}

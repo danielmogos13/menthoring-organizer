@@ -1,0 +1,67 @@
+@import '~@angular/material/theming';
+@import "variables";
+
+@include mat-core();
+@mixin my-component-theme($theme) {
+
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  side-bar {
+    .currentDateContainer {
+      background: mat-color($primary, 500);
+    }
+  }
+
+  app-tasks {
+    .addTasks {
+      color: mat-color($primary, 400);
+    }
+  }
+
+  app-content {
+    .appNameContainer {
+      background: mat-color($my-light-blue, 500);
+      .rightBorder {
+        background: linear-gradient(90deg, mat-color($primary, 500), mat-color($my-light-blue, 500));
+      }
+      h2 {
+        background: mat-color($primary, 500);
+      }
+    }
+  }
+
+  app-time-interval {
+    .timeNav {
+      background: mat-color($primary, 500);;
+    }
+  }
+  app-task-week-view {
+    .mat-badge-content {
+      background: mat-color($my-dark-blue, 600);
+    }
+  }
+
+  app-list {
+    .listItem {
+      &:hover {
+        background-color: mat-color($my-dark-blue, 600);
+      }
+      .iconContainer {
+        &.error {
+          color: mat-color($warn, 500);
+        }
+        &.forward {
+          color: mat-color($mat-yellow, 700);
+        }
+        &.access_alarms {
+          color: mat-color($warn, 500);
+        }
+        &.done_all {
+          color: mat-color($mat-green, 800);
+        }
+      }
+    }
+  }
+}

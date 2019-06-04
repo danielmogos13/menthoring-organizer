@@ -1,0 +1,10 @@
+.appViewsContainer {
+  background: #EDEDED;
+  padding: 15px 0;
+  min-height: calc(100vh - 90px);
+  box-shadow: 0 15px 15px -2px rgba(0, 0, 0, 0.3);
+  padding-top: 0;
+  .appViewNavBar {
+    margin-left: 5px;
+  }
+}

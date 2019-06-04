@@ -1,0 +1,26 @@
+.currentDateContainer {
+  display: inline-flex;
+  padding: 50px;
+  color: #ffffff;
+  .currentDate {
+    display: flex;
+    align-items: center;
+    .dateDayNumber {
+      font-size: 50px;
+    }
+    .dateText {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+      .monthYear {
+        font-size: 10px;
+        color: #c5c5c5;
+      }
+    }
+  }
+}
+
+app-stats {
+  position: relative;
+  top: 50px
+}

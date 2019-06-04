@@ -1,0 +1,21 @@
+<div class="appViewsContainer">
+  <div class="appViewNavBar">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link
+         routerLink="/tasks/dayview"
+         [routerLinkActiveOptions]="{exact: false}"
+         routerLinkActive #tasksRouter="routerLinkActive"
+         [active]="checkIfChildRouteIsActive(tasksRouter)">
+        Tasks
+      </a>
+      <a mat-tab-link
+         routerLink="money"
+         [routerLinkActiveOptions]="{exact: false}"
+         routerLinkActive #moneyRouter="routerLinkActive"
+         [active]="moneyRouter.isActive">
+        Money
+      </a>
+    </nav>
+  </div>
+  <router-outlet></router-outlet>
+</div>

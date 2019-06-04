@@ -1,0 +1,36 @@
+
+.appInfoContainer {
+  font-size: 20px;
+  .appNameContainer {
+    line-height: 70px;
+    margin: 0 0 5px 5px;
+    max-height: 70px;
+    overflow: hidden;
+    .appName {
+      display: flex;
+      .rightBorder{
+        -webkit-transform: rotateZ(10deg);
+        transform: rotateZ(10deg);
+        width: 15px;
+        position: relative;
+        z-index: 2;
+        height: 72px;
+        margin-top: -1px;
+        margin-bottom: -2px;
+      }
+      h2 {
+        margin: 0 -7px;
+        padding: 0 22px;
+        color: white;
+        line-height: 70px;
+        display: flex;
+        align-items: center;
+        i {
+          margin-right: 5px;
+          font-size: 40px;
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,80 @@
+
+
+.listContainer, .weekDaysContainer {
+  margin: 5px 5px 0 25px;
+  .listItem {
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px 0;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:hover {
+      color: white;
+      .changeStatus {
+        .material-icons {
+          color: white;
+        }
+      }
+      .taskDetails {
+        .material-icons {
+          color: white;
+        }
+
+      }
+    }
+    .taskDetails {
+      display: flex;
+      align-items: center;
+
+      .taskName {
+        h3 {
+          margin: 0;
+          padding: 0;
+        }
+      }
+      .taskExtraInfo{
+        font-size: 13px;
+        span {
+          margin-right: 20px;
+        }
+        .taskInfo {
+          font-weight: 600;
+        }
+      }
+
+      .iconContainer {
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+
+        .material-icons {
+          font-size: 35px;
+        }
+      }
+    }
+    .changeStatus {
+      margin-right: 20px;
+      button{
+        background: transparent;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 25px;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+  }
+
+  &.weekview {
+    margin-top: 0;
+    .listItem {
+      box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.2);
+    }
+
+  }
+}

@@ -1,0 +1,29 @@
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+}
+app-content {
+  flex: 1;
+}
+
+.sidebarContainer {
+  position: relative;
+
+  .collapseButton {
+    position: absolute;
+    right: 0;
+    color: white;
+    font-size: 25px;
+  }
+}
+
+
+mat-sidenav-content.sideBarOpened {
+  app-content {
+    margin-left: 60px;
+  }
+}
+.loadingSpinnerContainer {
+  display: flex;
+  justify-content: center;
+}

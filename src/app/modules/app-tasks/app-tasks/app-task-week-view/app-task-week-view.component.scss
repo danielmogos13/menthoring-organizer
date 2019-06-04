@@ -1,0 +1,54 @@
+.weekDaysContainer {
+  margin: 0 5px 0 25px;
+
+  .mat-tree {
+    background: transparent;
+    .mat-tree-node {
+      background: white;
+      margin: 10px 0;
+      .expandButtonContainer {
+        width: 100%;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        .taskNumberBadge {
+          margin-right: 15px;
+          .mat-badge-content {
+            right: -30px;
+            top: -5px;
+          }
+        }
+
+      }
+      .mat-icon-button {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        .mat-icon {
+          width: 30px;
+        }
+      }
+
+      .mat-icon-button[disabled] {
+        width: 30px;
+      }
+    }
+  }
+
+  mat-card {
+    width: 100%;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2);
+  }
+  .treeItem {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    app-list {
+      width: 100%;
+    }
+  }
+
+  .hiddenTreeItem {
+    display: none;
+  }
+}

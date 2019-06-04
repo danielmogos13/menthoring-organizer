@@ -1,0 +1,39 @@
+<h2 mat-dialog-title> {{operation === 'edit' ? 'Edit task': 'Add task'}}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <form name="taskForm" [formGroup]="formTask" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input required formControlName="taskName" matInput placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea class="description" [maxLength]="100" [rows]="2" cdkTextareaAutosize="false" formControlName="taskDescription" matInput placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input required formControlName="taskLocation"  matInput placeholder="Location">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="taskDate" [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Choose hour</mat-label>
+      <mat-select formControlName="selectHour">
+        <mat-option *ngFor="let hour of hours" [value]="hour.value">
+          {{hour.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button *ngIf="operation === 'edit'" mat-button [disabled]="formTask.invalid" (click)="saveTask()" cdkFocusInitial>Save</button>
+  <button *ngIf="operation === 'add'" mat-button [disabled]="formTask.invalid" (click)="addTask()" cdkFocusInitial>Add</button>
+</mat-dialog-actions>

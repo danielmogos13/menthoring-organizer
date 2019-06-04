@@ -1,0 +1,29 @@
+<div class="weekDaysContainer">
+  <div *ngIf="isLoading" class="loadingSpinnerContainer">
+    <mat-spinner></mat-spinner>
+  </div>
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node [ngClass]="{'hiddenTreeItem': node.level !== 0}" *matTreeNodeDef="let node" matTreeNodePadding>
+      <!-- use a disabled button to provide padding for tree leaf -->
+      <button mat-icon-button disabled></button>
+      {{node.level === 0 ? node.name: ""}}
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-tree-node class="treeItem" *matTreeNodeDef="let node;when: hasChild;">
+      <div class="expandButtonContainer">
+        <button mat-icon-button matTreeNodeToggle
+                [attr.aria-label]="'toggle ' + node.name">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+          {{node.name}}
+          <span class="taskNumberBadge" matBadge="{{node.children.length}}" matBadgeOverlap="false"></span>
+        </button>
+      </div>
+
+      <app-list [classProperty]="'weekview'" *ngIf="treeControl.isExpanded(node)" [tasks]="node.children"></app-list>
+    </mat-tree-node>
+  </mat-tree>
+
+</div>

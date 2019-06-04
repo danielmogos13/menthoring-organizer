@@ -1,0 +1,12 @@
+<div class="sidebarMainContainer">
+  <div class="currentDateContainer">
+    <div class="currentDate">
+      <div class="dateDayNumber">{{currentDayString}}</div>
+      <div class="dateText">
+        <span>{{currentDayName}}</span>
+        <span class="monthYear">{{currentMonth}} {{currentYear}}</span>
+      </div>
+    </div>
+  </div>
+  <app-stats [months]="months"></app-stats>
+</div>

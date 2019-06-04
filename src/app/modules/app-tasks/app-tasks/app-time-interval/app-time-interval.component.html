@@ -1,0 +1,25 @@
+<div class="timeInterval">
+
+  <div class="timeNav">
+    <button class="decreaseDateButton" (click)="changeDate('decrease', dayViewRouter)"></button>
+    <span>{{currentDayString}}/{{currentMonth}}/{{currentYear}}</span>
+    <button class="increaseDateButton" (click)="changeDate('increase', dayViewRouter)"></button>
+  </div>
+
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link
+       routerLink="/tasks/dayview"
+       [routerLinkActiveOptions]="{exact: false}"
+       routerLinkActive #dayViewRouter="routerLinkActive"
+       [active]="dayViewRouter.isActive">
+      Day view
+    </a>
+    <a mat-tab-link
+       routerLink="/tasks/weekview"
+       [routerLinkActiveOptions]="{exact: false}"
+       routerLinkActive #weekViewRouter="routerLinkActive"
+       [active]="weekViewRouter.isActive">
+      Week view
+    </a>
+  </nav>
+</div>

@@ -1,0 +1,47 @@
+<div class="listContainer {{classProperty}}">
+
+  <mat-card class="listItem" *ngFor="let task of tasks;">
+    <div class="taskDetails">
+      <div [title]="getTitle(task)" class="iconContainer {{checkDate(task)}}">
+        <i class="material-icons">
+          {{checkDate(task)}}
+        </i>
+      </div>
+
+      <div class="taskContent">
+        <div class="taskName">
+          <h3>{{task.name}}</h3>
+        </div>
+        <div class="taskExtraInfo">
+          <span>Hour: <span class="taskInfo">{{task.date.toDate().getHours() < 10 ? "0" + task.date.toDate().getHours() + ":00": task.date.toDate().getHours() + ":00"}}</span></span>
+          <span>Description: <span class="taskInfo">{{task.description}}</span></span>
+          <span>Location: <span class="taskInfo">{{task.location}}</span></span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="changeStatus">
+
+      <button (click)="changeTaskStatus(task.id, false)" *ngIf="!(checkDate(task) === 'access_alarms' || checkDate(task) === 'done_all') && task.stopped" class="startButton">
+        <i class="material-icons">play_arrow</i>
+      </button>
+
+      <button (click)="changeTaskStatus(task.id, true)" *ngIf="!(checkDate(task) === 'access_alarms' || checkDate(task) === 'done_all') && !task.stopped" class="stopButton">
+        <i class="material-icons">pause</i>
+      </button>
+
+      <button (click)="editTask(task.id)" *ngIf="!(checkDate(task) === 'access_alarms' || checkDate(task) === 'done_all')" class="editButton">
+        <i class="material-icons">edit</i>
+      </button>
+      <button (click)="copyTask(task)" class="copyButton">
+        <i class="material-icons">add_box</i>
+      </button>
+      <button (click)="deleteTask(task.id)" *ngIf="!(checkDate(task) === 'access_alarms' || checkDate(task) === 'done_all')" class="deleteButton">
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
+
+  </mat-card>
+
+</div>
