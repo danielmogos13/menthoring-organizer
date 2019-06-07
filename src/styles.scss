@@ -32,8 +32,9 @@ $admin-warn:    mat-palette($mat-red);
 $basic-theme: mat-light-theme($basic-primary, $basic-accent, $basic-warn);
 $admin-theme: mat-light-theme($admin-primary, $admin-accent, $admin-warn);
 
+@include angular-material-theme($basic-theme);
+
 .basic-theme{
-  @include angular-material-theme($basic-theme);
   @include layout-theme($basic-theme);
 }
 .admin-theme {
