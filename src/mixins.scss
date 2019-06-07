@@ -2,7 +2,7 @@
 @import "variables";
 
 @include mat-core();
-@mixin my-component-theme($theme) {
+@mixin layout-theme($theme) {
 
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);

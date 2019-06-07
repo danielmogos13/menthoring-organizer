@@ -1,5 +1,5 @@
 
-<div class="my-default-theme">
+<div [ngClass]="userTheme">
   <mat-sidenav-container class="sidebarContainer">
     <mat-sidenav #sidenav [mode]="'side'" opened>
       <button class="collapseButton" mat-button (click)="sidenav.toggle(); sideBarOpened = sidenav.opened">III</button>

@@ -1,3 +1,23 @@
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
+$basic-primary: mat-palette($mat-amber);
+$basic-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$basic-warn:    mat-palette($mat-red);
+
+
+$basic-theme: mat-light-theme($basic-primary, $basic-accent, $basic-warn);
+@include angular-material-theme($basic-theme);
+
 .loginContainer {
   background: #f0f3f5;
   width: 100vw;

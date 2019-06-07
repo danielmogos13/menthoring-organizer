@@ -12,9 +12,12 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm: any;
 
-  constructor(private loginService: AppLoginService, private authModule: AngularFireAuth, private _router: Router, private _ngZone: NgZone) {
-
-  }
+  constructor(
+    private loginService: AppLoginService,
+    private authModule: AngularFireAuth,
+    private _router: Router,
+    private _ngZone: NgZone
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -47,6 +50,7 @@ export class LoginComponent implements OnInit {
     if(result.user !== null){
 
       let userData = {
+        uid: result.user.uid,
         name: result.user.displayName,
         email: result.user.email,
         picture: result.user.photoURL

@@ -8,6 +8,7 @@ import {LoginComponent} from './modules/app-login/login/login.component';
 import {AuthGuard} from './services/auth-guard/auth-guard.service';
 import {LayoutComponent} from './layout/layout.component';
 import { LoginGuardService } from './services/loginGuard/login-guard.service';
+import {UserRole} from './services/appRoles/app-roles.service';
 
 const routes: Routes = [
   {
@@ -27,6 +28,9 @@ const routes: Routes = [
         path: 'app',
         component: LayoutComponent,
         canActivate: [AuthGuard],
+        resolve:{
+          role: UserRole
+        },
         children: [
           {
             path: '',
@@ -50,12 +54,21 @@ const routes: Routes = [
                 path: 'weekview',
                 component: AppTaskWeekViewComponent
               },
+              {
+                path: '**',
+                redirectTo: '/app/tasks/dayview',
+              },
             ]
           },
           {
             path: 'money',
             component: AppMoneyComponent,
-          }
+            pathMatch: "full"
+          },
+          {
+            path: '**',
+            redirectTo: '/app/money',
+          },
         ]
       },
     ]

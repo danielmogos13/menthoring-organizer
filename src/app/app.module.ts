@@ -10,6 +10,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {NgMaterialModule} from './modules/ng-material/ng-material.module';
 import {AuthGuard} from './services/auth-guard/auth-guard.service';
+import {UserRole} from './services/appRoles/app-roles.service';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import {AuthGuard} from './services/auth-guard/auth-guard.service';
     AppTasksModule,
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    UserRole
   ],
   bootstrap: [AppComponent]
 })
