@@ -1,16 +1,18 @@
 
-<mat-sidenav-container class="sidebarContainer">
-  <mat-sidenav #sidenav [mode]="'side'" opened>
-    <button class="collapseButton" mat-button (click)="sidenav.toggle(); sideBarOpened = sidenav.opened">III</button>
-    <side-bar></side-bar>
+<div class="my-default-theme">
+  <mat-sidenav-container class="sidebarContainer">
+    <mat-sidenav #sidenav [mode]="'side'" opened>
+      <button class="collapseButton" mat-button (click)="sidenav.toggle(); sideBarOpened = sidenav.opened">III</button>
+      <side-bar></side-bar>
+    </mat-sidenav>
+
+    <mat-sidenav-content [ngClass]="!sideBarOpened ? 'sideBarOpened': ''">
+      <app-content></app-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <mat-sidenav *ngIf="!sideBarOpened" #sidenav2 [mode]="'push'" opened>
+    <button mat-button (click)="sidenav.toggle(); sideBarOpened = sidenav.opened">III</button>
   </mat-sidenav>
+</div>
 
-  <mat-sidenav-content [ngClass]="!sideBarOpened ? 'sideBarOpened': ''">
-    <app-content></app-content>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-
-<mat-sidenav *ngIf="!sideBarOpened" #sidenav2 [mode]="'push'" opened>
-  <button mat-button (click)="sidenav.toggle(); sideBarOpened = sidenav.opened">III</button>
-</mat-sidenav>

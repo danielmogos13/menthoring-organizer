@@ -4,41 +4,62 @@ import { AppTasksComponent } from './modules/app-tasks/app-tasks/app-tasks.compo
 import { AppMoneyComponent } from './modules/app-money/app-money/app-money.component';
 import { AppTaskDayViewComponent } from './modules/app-tasks/app-tasks/app-task-day-view/app-task-day-view.component';
 import { AppTaskWeekViewComponent } from './modules/app-tasks/app-tasks/app-task-week-view/app-task-week-view.component';
+import {LoginComponent} from './modules/app-login/login/login.component';
+import {AuthGuard} from './services/auth-guard/auth-guard.service';
+import {LayoutComponent} from './layout/layout.component';
+import { LoginGuardService } from './services/loginGuard/login-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tasks/dayview',
-    pathMatch: "full",
-  },
-  {
-    path: 'tasks',
-    component: AppTasksComponent,
     children: [
       {
-        path: 'dayview',
-        redirectTo: 'tasks/dayview',
-        pathMatch: 'full',
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [LoginGuardService],
       },
       {
-        path: 'dayview',
-        component: AppTaskDayViewComponent,
+        path: '',
+        redirectTo: '/app/tasks/dayview',
+        pathMatch: "full"
       },
       {
-        path: 'weekview',
-        redirectTo: 'tasks/weekview',
-        pathMatch: 'full',
+        path: 'app',
+        component: LayoutComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: '/app/tasks/dayview',
+            pathMatch: "full",
+          },
+          {
+            path: 'tasks',
+            component: AppTasksComponent,
+            children: [
+              {
+                path: '',
+                redirectTo: '/dayview',
+                pathMatch: "full"
+              },
+              {
+                path: 'dayview',
+                component: AppTaskDayViewComponent
+              },
+              {
+                path: 'weekview',
+                component: AppTaskWeekViewComponent
+              },
+            ]
+          },
+          {
+            path: 'money',
+            component: AppMoneyComponent,
+          }
+        ]
       },
-      {
-        path: 'weekview',
-        component: AppTaskWeekViewComponent,
-      }
     ]
   },
-  {
-    path: 'money',
-    component: AppMoneyComponent,
-  }
 ];
 
 @NgModule({

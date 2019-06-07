@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TasksService} from '../../../services/tasks.service';
+import {TasksService} from '../../../services/tasksService/tasks.service';
 import * as Highcharts from 'highcharts';
 
 declare var require: any;

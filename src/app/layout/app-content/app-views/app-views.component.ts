@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-views',
@@ -7,18 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppViewsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
 
   }
 
-
-  checkIfChildRouteIsActive (tasksRouter) {
-
-  return tasksRouter.router.routerState.snapshot.url === "/tasks/dayview" ||
-      tasksRouter.router.routerState.snapshot.url === "/tasks/weekview";
-
+  checkIfChildRouteIsActive () {
+    return this._router.url === "/app/tasks/dayview" || this._router.url === "/app/tasks/weekview";
   }
 
 }

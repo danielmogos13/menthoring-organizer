@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { TasksDialogComponent } from '../tasks-dialog/tasks-dialog.component'
 import { DeleteTaskDialogComponent } from '../delete-task-dialog/delete-task-dialog.component'
 import {ITasks} from '../../interfaces/ITasks';
-import {TasksService} from '../../services/tasks.service';
+import {TasksService} from '../../services/tasksService/tasks.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ActionPerformedComponent } from '../action-performed/action-performed.component';
 

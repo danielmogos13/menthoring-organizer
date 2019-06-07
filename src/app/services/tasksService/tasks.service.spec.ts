@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TasksService } from './tasks-service.service';
+import { TasksService } from './tasks.service';
 
 describe('TasksServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

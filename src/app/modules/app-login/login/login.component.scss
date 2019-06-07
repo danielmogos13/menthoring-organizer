@@ -1,0 +1,33 @@
+.loginContainer {
+  background: #f0f3f5;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mat-card {
+    width: 400px;
+    .titleContainer {
+      display: flex;
+      justify-content: center;
+    }
+    .loginButton {
+      display: flex;
+      justify-content: center;
+      .mat-raised-button {
+        width: 300px;
+      }
+    }
+    .formContainer {
+      margin: 25px 0;
+      .loginForm {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .mat-form-field {
+          width: 300px;
+        }
+      }
+    }
+  }
+}

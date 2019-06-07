@@ -2,14 +2,12 @@
   <div class="appViewNavBar">
     <nav mat-tab-nav-bar>
       <a mat-tab-link
-         routerLink="/tasks/dayview"
-         [routerLinkActiveOptions]="{exact: false}"
-         routerLinkActive #tasksRouter="routerLinkActive"
-         [active]="checkIfChildRouteIsActive(tasksRouter)">
+         routerLink="/app/tasks/dayview"
+         [active]="checkIfChildRouteIsActive()">
         Tasks
       </a>
       <a mat-tab-link
-         routerLink="money"
+         routerLink="/app/money"
          [routerLinkActiveOptions]="{exact: false}"
          routerLinkActive #moneyRouter="routerLinkActive"
          [active]="moneyRouter.isActive">

@@ -18,9 +18,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from '../../app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {AngularFireModule} from '@angular/fire';
-import {environment} from '../../../environments/environment';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {NgMaterialModule} from '../ng-material/ng-material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -50,9 +47,6 @@ import {MAT_DATE_LOCALE, MatDatepickerModule, MatNativeDateModule} from '@angula
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
     NgMaterialModule,
     FormsModule,
     ReactiveFormsModule,

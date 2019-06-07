@@ -14,6 +14,5 @@ export class LayoutComponent implements OnInit {
 
   }
 
-  showFiller = false;
   sideBarOpened = true;
 }

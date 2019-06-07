@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TasksService } from '../../../../services/tasks.service';
+import { TasksService } from '../../../../services/tasksService/tasks.service';
 import { ITasks } from '../../../../interfaces/ITasks';
-import { LoadingSpinnerService } from '../../../../services/loading-spinner.service';
+import { LoadingSpinnerService } from '../../../../services/loading-spinner/loading-spinner.service';
 
 @Component({
   selector: 'app-task-day-view',
@@ -42,6 +42,8 @@ export class AppTaskDayViewComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.dateChangeEvent.unsubscribe();
+    if(this.dateChangeEvent) {
+      this.dateChangeEvent.unsubscribe();
+    }
   }
 }

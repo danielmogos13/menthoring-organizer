@@ -44,7 +44,7 @@ $demo-app-theme: mat-light-theme($demo-app-primary, $demo-app-accent, $demo-app-
 }
 
 
-app-root, router-outlet, side-bar, app-content, app-views, app-tasks, app-time-interval, layout, router-outlet, app-list, app-stats {
+app-root, router-outlet, side-bar, app-content, app-views, app-tasks, app-time-interval, layout, router-outlet, app-list, app-stats, login {
   display: block;
 }
 

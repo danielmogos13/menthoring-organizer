@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TasksService } from '../../../../services/tasks.service';
+import { TasksService } from '../../../../services/tasksService/tasks.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-time-interval',
@@ -15,15 +16,15 @@ export class AppTimeIntervalComponent implements OnInit {
   currentMonth: string = (this.currentDate.getMonth() + 1).toString();
   currentYear: number = this.currentDate.getFullYear();
 
-  constructor(private tasksService: TasksService) { }
+  constructor(private tasksService: TasksService, private _router: Router) { }
 
   ngOnInit() {
     this.tasksService.updateDate(this.currentDayNumber + '/' + this.currentMonth + "/" + this.currentYear);
   }
 
-  changeDate(type, tasksRouter) {
+  changeDate(type) {
 
-    this.activeView = tasksRouter.router.routerState.snapshot.url === "/tasks/dayview" ? 'dayview': 'weekview';
+    this.activeView = this._router.url === "/app/tasks/dayview" ? 'dayview': 'weekview';
 
 
     if(this.activeView === 'dayview'){
