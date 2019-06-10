@@ -21,7 +21,7 @@
   }
 
   app-content {
-    .appNameContainer {
+    .appHeader {
       background: mat-color($my-light-blue, 500);
       .rightBorder {
         background: linear-gradient(90deg, mat-color($primary, 500), mat-color($my-light-blue, 500));

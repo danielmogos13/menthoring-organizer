@@ -1,5 +1,5 @@
 <div class="appInfoContainer">
-    <div class="appNameContainer">
+    <div class="appHeader">
 
       <div class="appName">
         <h2 class="mat-h2">
@@ -7,7 +7,25 @@
           Organizer
         </h2>
         <div class="rightBorder"></div>
+      </div>
 
+      <div class="userInfoContainer">
+        <div class="userPicture">
+          <img [src]="imagePath">
+        </div>
+        <div class="userDisplayName">
+          <span>{{user.name}}</span>
+        </div>
+        <div class="userSettings">
+          <i class="material-icons">
+            settings
+          </i>
+        </div>
+        <div (click)="logOut()" class="logout">
+          <i class="material-icons">
+            power_settings_new
+          </i>
+        </div>
       </div>
 
   </div>

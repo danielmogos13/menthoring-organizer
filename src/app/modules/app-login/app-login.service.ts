@@ -11,7 +11,22 @@ export class AppLoginService {
   constructor(private authModule: AngularFireAuth, private firestore: AngularFirestore) {}
 
   loginWithGoogle() {
-    return this.authModule.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    return this.authModule.auth.signInWithPopup(new auth.GoogleAuthProvider())
+      .then(result => {
+
+        let user = {
+          email: result.user.email,
+          emailVerified: false,
+          password: null,
+          displayName: result.user.displayName,
+          disabled: false,
+          admin: false
+        };
+        return this.firestore.collection('users')
+          .doc(result.user.uid).set(user).then(() => {
+            return result;
+          });
+      });
   }
 
   loginWithEmailAndPassword(userCredentials) {
@@ -40,4 +55,9 @@ export class AppLoginService {
 
       });
   }
+
+  signOut () {
+    return this.authModule.auth.signOut();
+  }
+
 }

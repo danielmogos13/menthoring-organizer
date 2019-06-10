@@ -14,7 +14,6 @@ export class TasksService {
   private dateSubject = new BehaviorSubject<string>('date');
   currentDate = this.dateSubject.asObservable();
   constructor(private http: HttpClient, private firestore: AngularFirestore) {
-    this.userId = JSON.parse(localStorage.getItem('currentUser')).uid;
   }
 
   updateDate(date: string) {
@@ -22,6 +21,7 @@ export class TasksService {
   }
 
   getDayTasks(dateUnformatted) {
+    this.userId = JSON.parse(localStorage.getItem('currentUser')).uid;
 
     const dateArray = dateUnformatted.split('/');
     const monthNumber = parseInt(dateArray[1]) < 10 ? "0" + dateArray[1]: dateArray[1];
@@ -45,6 +45,7 @@ export class TasksService {
 
 
   getWeekTasks (datesUnformatted) {
+    this.userId = JSON.parse(localStorage.getItem('currentUser')).uid;
 
     const dateQueries = datesUnformatted.map(dateItem => {
       let dateArray = dateItem.date.split("-");
@@ -94,6 +95,7 @@ export class TasksService {
   }
 
   getMonthlyStats (monthStart, monthEnd) {
+    this.userId = JSON.parse(localStorage.getItem('currentUser')).uid;
     return this.firestore.collection<ITasks>('tasks', ref => ref
       .where('userId', '==', this.userId)
       .orderBy('date')

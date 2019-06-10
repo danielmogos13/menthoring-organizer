@@ -51,6 +51,7 @@ export class UserRegistrationComponent implements OnInit {
         picture: userResult.photoURL
       };
 
+      localStorage.removeItem('currentUser');
       localStorage.setItem('currentUser', JSON.stringify(userData));
       this._ngZone.run(() => this._router.navigate(['/app/tasks/dayview']));
     });
