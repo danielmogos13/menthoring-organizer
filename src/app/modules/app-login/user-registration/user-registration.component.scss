@@ -1,18 +1,21 @@
+@import '~@angular/material/theming';
+@import "../../../../variables";
+
 .registrationContainer {
-  background: #f0f3f5;
+  background: mat-color($loginAndRegistrationPageBackground, 500);
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   mat-card {
-    background: #292967;
+    background-color: mat-color($my-dark-blue, 500);
     width: 400px;
     border-radius: 15px;
     padding: 0;
     color: white;
     .titleContainer {
-      background: #242156;
+      background-color: mat-color($my-dark-blue, 900);
       display: flex;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;

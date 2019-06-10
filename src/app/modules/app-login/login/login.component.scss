@@ -1,5 +1,8 @@
+@import '~@angular/material/theming';
+@import "../../../../variables";
+
 .loginContainer {
-  background: #f0f3f5;
+  background: mat-color($loginAndRegistrationPageBackground, 500);
   width: 100vw;
   height: 100vh;
   display: flex;
