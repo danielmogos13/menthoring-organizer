@@ -80,8 +80,11 @@ export class TasksDialogComponent implements OnInit {
 
     // @ts-ignore
     taskDate.setHours(this.formTask.value.selectHour, 0, 0, 0);
+    let userId = JSON.parse(localStorage.getItem('currentUser')).uid;
+
     // @ts-ignore
     this.task = {
+      userId: userId,
       name: this.formTask.value.taskName,
       description: this.formTask.value.taskDescription,
       date: taskDate,

@@ -9,10 +9,13 @@ import { ITasks } from '../../interfaces/ITasks';
 })
 export class TasksService {
   tasks: Observable<ITasks[]>;
+  userId: string;
 
   private dateSubject = new BehaviorSubject<string>('date');
   currentDate = this.dateSubject.asObservable();
-  constructor(private http: HttpClient, private firestore: AngularFirestore) { }
+  constructor(private http: HttpClient, private firestore: AngularFirestore) {
+    this.userId = JSON.parse(localStorage.getItem('currentUser')).uid;
+  }
 
   updateDate(date: string) {
     this.dateSubject.next(date);
@@ -33,6 +36,7 @@ export class TasksService {
     endOfDay.setDate(endOfDay.getDate() + 1);
 
     return this.firestore.collection<ITasks>('tasks', ref => ref
+      .where('userId', '==', this.userId)
       .orderBy('date')
       .startAt(startOfDay)
       .endBefore(endOfDay)
@@ -55,6 +59,7 @@ export class TasksService {
 
 
     return this.firestore.collection<ITasks>('tasks', ref => ref
+      .where('userId', '==', this.userId)
       .orderBy('date')
       .startAt(startPeriod)
       .endBefore(endPeriod)
