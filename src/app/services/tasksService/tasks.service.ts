@@ -95,6 +95,7 @@ export class TasksService {
 
   getMonthlyStats (monthStart, monthEnd) {
     return this.firestore.collection<ITasks>('tasks', ref => ref
+      .where('userId', '==', this.userId)
       .orderBy('date')
       .startAt(monthStart)
       .endBefore(monthEnd)
