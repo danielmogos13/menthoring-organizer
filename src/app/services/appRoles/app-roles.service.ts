@@ -26,7 +26,7 @@ export class UserRole implements Resolve<any>{
       return userDoc.valueChanges()
         .pipe(map(data => {
           // @ts-ignore
-          return data.role;
+          return data.admin ? 'admin': 'basic';
         }))
         .pipe(first())
     }
