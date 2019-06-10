@@ -19,13 +19,30 @@
       }
     }
     .formContainer {
-      margin: 25px 0;
+      margin: 25px 0 0 0;
       .loginForm {
         display: flex;
         align-items: center;
         flex-direction: column;
         .mat-form-field {
           width: 300px;
+        }
+      }
+    }
+    .registrationTextContainer {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      .registrationText {
+        width: 300px;
+        justify-content: flex-end;
+        display: flex;
+        margin-top: 5px;
+        span {
+          margin-right: 5px;
+        }
+        span, a {
+          font-size: 11px;
         }
       }
     }

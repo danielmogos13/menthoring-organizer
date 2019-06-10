@@ -1,0 +1,71 @@
+.registrationContainer {
+  background: #f0f3f5;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mat-card {
+    background: #292967;
+    width: 400px;
+    border-radius: 15px;
+    padding: 0;
+    color: white;
+    .titleContainer {
+      background: #242156;
+      display: flex;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      justify-content: center;
+    }
+    .registerButtonContainer {
+      display: flex;
+      justify-content: center;
+      margin: 50px 0;
+      .mat-raised-button {
+        font-size: 20px;
+        width: 300px;
+        color: white;
+      }
+    }
+    .formContainer {
+
+      margin: 25px 0;
+      .registrationForm {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .mat-form-field {
+          width: 300px;
+          line-height: 40px;
+          margin-bottom: -15px;
+          .mat-input-element {
+            caret-color: black;
+            color: black;
+            height: 40px;
+            border-radius: 5px;
+            background: white;
+          }
+          .mat-form-field-label {
+            color: black;
+            margin-left: 10px;
+          }
+          .mat-form-field-underline {
+            background: transparent;
+          }
+        }
+        .checkboxContainer {
+          width: 300px;
+          padding: 10px 0;
+          .mat-checkbox {
+            display: block;
+            .mat-checkbox-frame {
+              border: none;
+              background: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

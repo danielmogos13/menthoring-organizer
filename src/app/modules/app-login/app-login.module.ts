@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import {NgMaterialModule} from '../ng-material/ng-material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    UserRegistrationComponent
   ],
   exports: [
     LoginComponent
@@ -15,7 +18,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     NgMaterialModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ]
 })
 export class AppLoginModule { }

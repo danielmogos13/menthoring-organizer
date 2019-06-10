@@ -16,16 +16,23 @@
 
       <form name="loginForm" [formGroup]="loginForm" class="loginForm">
         <mat-form-field class="example-full-width">
-          <input formControlName="email" required matInput placeholder="Email">
+          <input autocomplete="off" formControlName="email" required matInput placeholder="Email">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input formControlName="password" type="password" required matInput placeholder="Password">
+          <input autocomplete="off" formControlName="password" type="password" required matInput placeholder="Password">
         </mat-form-field>
       </form>
 
       <div class="loginButton">
         <button [disabled]="loginForm.invalid" (click)="loginWithEmailAndPassword()" mat-raised-button color="primary">Login in</button>
+      </div>
+    </div>
+
+    <div class="registrationTextContainer">
+      <div class="registrationText">
+        <span>Dont have an account?</span>
+        <a routerLink="/registration">Sign up</a>
       </div>
     </div>
 

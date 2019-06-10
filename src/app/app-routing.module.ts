@@ -9,6 +9,7 @@ import {AuthGuard} from './services/auth-guard/auth-guard.service';
 import {LayoutComponent} from './layout/layout.component';
 import { LoginGuardService } from './services/loginGuard/login-guard.service';
 import {UserRole} from './services/appRoles/app-roles.service';
+import {UserRegistrationComponent} from './modules/app-login/user-registration/user-registration.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         canActivate: [LoginGuardService],
+      },
+      {
+        path: 'registration',
+        component: UserRegistrationComponent,
       },
       {
         path: '',
