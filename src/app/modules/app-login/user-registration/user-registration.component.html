@@ -36,7 +36,10 @@
         </div>
 
         <div class="registerButtonContainer">
-          <button (click)="registerUser()" [disabled]="registrationForm.invalid" mat-raised-button color="primary">Register</button>
+          <button (click)="registerUser()" [disabled]="registrationForm.invalid" mat-raised-button color="primary">
+            <span *ngIf="registrationLoading" class="lds-ring"><div></div><div></div><div></div><div></div></span>
+            Register
+          </button>
         </div>
       </form>
 

@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class UserRegistrationComponent implements OnInit {
   registrationForm: any;
+  registrationLoading: boolean;
 
   constructor(
     private loginService: AppLoginService,
@@ -39,7 +40,10 @@ export class UserRegistrationComponent implements OnInit {
       admin: this.registrationForm.value.admin
     };
 
+    this.registrationLoading = true;
+
     this.loginService.addUser(user).then(userResult => {
+      this.registrationLoading = false;
       let userData = {
         uid: userResult.uid,
         name: userResult.displayName,
