@@ -41,8 +41,9 @@ export class AppListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.openSnackBar("Task edited");
+      if(result === 'success'){
+        this.openSnackBar("Task edited");
+      }
     });
 
   }

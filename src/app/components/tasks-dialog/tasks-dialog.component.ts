@@ -3,6 +3,8 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ITasks } from '../../interfaces/ITasks';
 import { TasksService } from '../../services/tasksService/tasks.service'
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {createCheckers} from "ts-interface-checker";
+import ITasksTI from  '../../interfaces/ITasks-ti';
 
 @Component({
   selector: 'tasks-dialog',
@@ -54,8 +56,6 @@ export class TasksDialogComponent implements OnInit {
 
   saveTask () {
 
-    this.dialogRef.close();
-
     let taskDate = this.formTask.value.taskDate;
 
     // @ts-ignore
@@ -66,16 +66,21 @@ export class TasksDialogComponent implements OnInit {
       name: this.formTask.value.taskName,
       description: this.formTask.value.taskDescription,
       date: taskDate,
-      location: this.formTask.value.taskLocation
+      location: this.formTask.value.taskLocation,
+      stopped: this.task.stopped
     };
 
+    const {ITasks} = createCheckers(ITasksTI);
+
+    ITasks.strictCheck(this.task);
+
+    this.dialogRef.close('success');
     this.tasksService.saveTask(this.task).then(param => {
 
     });
   }
 
   addTask () {
-    this.dialogRef.close();
     let taskDate = this.formTask.value.taskDate;
 
     // @ts-ignore
@@ -89,9 +94,13 @@ export class TasksDialogComponent implements OnInit {
       description: this.formTask.value.taskDescription,
       date: taskDate,
       location: this.formTask.value.taskLocation,
-      stopped: false
+      stopped: false,
     };
 
+    const {ITasks} = createCheckers(ITasksTI);
+
+    ITasks.strictCheck(this.task);
+    this.dialogRef.close('success');
     this.tasksService.addTask(this.task).then(param => {
 
     });

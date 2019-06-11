@@ -35,8 +35,9 @@ export class AppTasksComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.openSnackBar("Task created");
+      if(result === 'success'){
+        this.openSnackBar("Task created");
+      }
     })
 
   }
