@@ -42,7 +42,7 @@ $admin-theme: mat-light-theme($admin-primary, $admin-accent, $admin-warn);
   @include layout-theme($admin-theme);
 }
 
-app-root, router-outlet, side-bar, app-content, app-views, app-tasks, app-time-interval, layout, router-outlet, app-list, app-stats, login {
+app-root, router-outlet, side-bar, app-content, app-views, app-tasks, app-time-interval, layout, router-outlet, app-list, app-stats, login, button-loading {
   display: block;
 }
 

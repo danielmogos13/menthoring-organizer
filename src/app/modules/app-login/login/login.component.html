@@ -25,7 +25,10 @@
       </form>
 
       <div class="loginButton">
-        <button [disabled]="loginForm.invalid" (click)="loginWithEmailAndPassword()" mat-raised-button color="primary">Login in</button>
+        <button [disabled]="loginForm.invalid" (click)="loginWithEmailAndPassword()" mat-raised-button color="primary">
+          <button-loading *ngIf="loginLoading"></button-loading>
+          Login in
+        </button>
       </div>
     </div>
 

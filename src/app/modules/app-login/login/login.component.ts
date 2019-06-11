@@ -11,6 +11,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: any;
+  loginLoading: boolean;
 
   constructor(
     private loginService: AppLoginService,
@@ -38,10 +39,11 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password,
     };
 
+    this.loginLoading = true;
     this.loginService.loginWithEmailAndPassword(userCredentials).then(result => {
+      this.loginLoading = false;
       this.afterLogin(result);
     });
-
   }
 
   afterLogin(result) {
