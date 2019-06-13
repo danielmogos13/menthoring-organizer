@@ -1,18 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { TasksDialogComponent } from '../tasks-dialog/tasks-dialog.component'
-import { DeleteTaskDialogComponent } from '../delete-task-dialog/delete-task-dialog.component'
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 import {ITasks} from '../../interfaces/ITasks';
 import {TasksService} from '../../services/tasksService/tasks.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ActionPerformedComponent } from '../action-performed/action-performed.component';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './app-list.component.html',
-  styleUrls: ['./app-list.component.scss']
+  selector: 'tasks-list',
+  templateUrl: './tasks-list.component.html',
+  styleUrls: ['./tasks-list.component.scss']
 })
-export class AppListComponent implements OnInit {
+export class TasksListComponent implements OnInit {
   @Input() tasks: ITasks[];
   @Input() classProperty: string;
 
@@ -49,9 +49,11 @@ export class AppListComponent implements OnInit {
   }
 
   deleteTask (taskId) {
-    const dialogRef = this.dialog.open(DeleteTaskDialogComponent, {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '450px',
       data: {
+        type: 'deleteTask',
+        title: 'Delete task',
         taskId: taskId
       }
     });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { ITasks } from '../../interfaces/ITasks';
 
@@ -111,6 +111,15 @@ export class TasksService {
   editExpense (expense, url) {
 
     return this.http.post(url, {expense: expense});
+  }
+
+  deleteExpense (expenseId, url) {
+
+    const options = {
+      params: new HttpParams().set('expenseId', expenseId)
+    };
+
+    return this.http.delete(url, options);
   }
 
 

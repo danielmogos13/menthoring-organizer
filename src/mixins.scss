@@ -43,7 +43,7 @@
     }
   }
 
-  app-list, app-money {
+  tasks-list, money-list {
     .listItem {
       &:hover {
         background-color: mat-color($my-dark-blue, 600);

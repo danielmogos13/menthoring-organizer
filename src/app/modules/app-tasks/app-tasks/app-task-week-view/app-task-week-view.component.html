@@ -22,7 +22,7 @@
         </button>
       </div>
 
-      <app-list [classProperty]="'weekview'" *ngIf="treeControl.isExpanded(node)" [tasks]="node.children"></app-list>
+      <tasks-list [classProperty]="'weekview'" *ngIf="treeControl.isExpanded(node)" [tasks]="node.children"></tasks-list>
     </mat-tree-node>
   </mat-tree>
 

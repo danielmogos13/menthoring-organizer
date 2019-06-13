@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppTasksComponent } from './modules/app-tasks/app-tasks/app-tasks.component';
-import { AppMoneyComponent } from './modules/app-money/app-money/app-money.component';
+import { AppMoneyComponent } from './modules/app-money/app-money.component';
 import { AppTaskDayViewComponent } from './modules/app-tasks/app-tasks/app-task-day-view/app-task-day-view.component';
 import { AppTaskWeekViewComponent } from './modules/app-tasks/app-tasks/app-task-week-view/app-task-week-view.component';
 import {LoginComponent} from './modules/app-login/login/login.component';
@@ -10,6 +10,7 @@ import {LayoutComponent} from './layout/layout.component';
 import { LoginGuardService } from './services/loginGuard/login-guard.service';
 import {UserRole} from './services/appRoles/app-roles.service';
 import {UserRegistrationComponent} from './modules/app-login/user-registration/user-registration.component';
+import {AppMoneyDayViewComponent} from './modules/app-money/app-money-day-view/app-money-day-view.component';
 
 const routes: Routes = [
   {
@@ -68,11 +69,17 @@ const routes: Routes = [
           {
             path: 'money',
             component: AppMoneyComponent,
-            pathMatch: "full"
-          },
-          {
-            path: '**',
-            redirectTo: '/app/money',
+            children: [
+              {
+                path: '',
+                redirectTo: '/app/money/dayview',
+                pathMatch: "full"
+              },
+              {
+                path: 'dayview',
+                component: AppMoneyDayViewComponent
+              }
+            ]
           },
         ]
       },

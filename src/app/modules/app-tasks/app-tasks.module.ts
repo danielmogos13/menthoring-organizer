@@ -10,9 +10,9 @@ import {AppTasksComponent} from './app-tasks/app-tasks.component';
 import {AppTimeIntervalComponent} from './app-tasks/app-time-interval/app-time-interval.component';
 import {AppTaskDayViewComponent} from './app-tasks/app-task-day-view/app-task-day-view.component';
 import {AppTaskWeekViewComponent} from './app-tasks/app-task-week-view/app-task-week-view.component';
-import {AppListComponent} from '../../components/app-list/app-list.component';
+import {TasksListComponent} from '../../components/tasks-list/tasks-list.component';
 import {TasksDialogComponent} from '../../components/tasks-dialog/tasks-dialog.component';
-import {DeleteTaskDialogComponent} from '../../components/delete-task-dialog/delete-task-dialog.component';
+import {DeleteDialogComponent} from '../../components/delete-dialog/delete-dialog.component';
 import {ActionPerformedComponent} from '../../components/action-performed/action-performed.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from '../../app-routing.module';
@@ -36,9 +36,9 @@ import {MAT_DATE_LOCALE, MatDatepickerModule, MatNativeDateModule} from '@angula
     AppTimeIntervalComponent,
     AppTaskDayViewComponent,
     AppTaskWeekViewComponent,
-    AppListComponent,
+    TasksListComponent,
     TasksDialogComponent,
-    DeleteTaskDialogComponent,
+    DeleteDialogComponent,
     ActionPerformedComponent,
   ],
   imports: [
@@ -53,7 +53,10 @@ import {MAT_DATE_LOCALE, MatDatepickerModule, MatNativeDateModule} from '@angula
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  entryComponents: [TasksDialogComponent, DeleteTaskDialogComponent, ActionPerformedComponent],
+  entryComponents: [TasksDialogComponent, DeleteDialogComponent, ActionPerformedComponent],
+  exports: [
+    AppTimeIntervalComponent
+  ],
   providers: [
     AngularFireDatabaseModule,
     MatDatepickerModule,

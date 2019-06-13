@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {TasksService} from '../../../../services/tasksService/tasks.service';
 import { LoadingSpinnerService } from '../../../../services/loading-spinner/loading-spinner.service';
@@ -25,7 +25,7 @@ interface ExampleFlatNode {
 })
 
 
-export class AppTaskWeekViewComponent implements OnInit {
+export class AppTaskWeekViewComponent implements OnInit, OnDestroy {
 
   treeControl: any;
   expandedNodes: any;

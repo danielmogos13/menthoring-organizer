@@ -1,0 +1,24 @@
+.moneyContainer {
+  display: flex;
+  flex-direction: column;
+  .contentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .addExpense {
+      padding: 40px;
+      button {
+        padding: 0 10px;
+        border: 1px solid #ddd;
+        border-radius: 7px;
+        font-weight: 800;
+        background: transparent;
+        box-shadow: 0 0 3px 0 rgba(0,0,0,0.25);
+        cursor: pointer;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
