@@ -1,0 +1,24 @@
+<h2 mat-dialog-title> {{operation === 'edit' ? 'Edit expense': 'Add expense'}}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <form name="taskForm" [formGroup]="formExpense" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input required formControlName="expenseName" matInput placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input required formControlName="expenseTotalPaid"  matInput placeholder="Total paid">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input required formControlName="expenseProvider"  matInput placeholder="Provider">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button *ngIf="operation === 'edit'" mat-button [disabled]="formExpense.invalid" (click)="saveExpense()" cdkFocusInitial>Save</button>
+  <button *ngIf="operation === 'add'" mat-button [disabled]="formExpense.invalid" (click)="addExpense()" cdkFocusInitial>Add</button>
+</mat-dialog-actions>

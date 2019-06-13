@@ -43,7 +43,7 @@
     }
   }
 
-  app-list {
+  app-list, app-money {
     .listItem {
       &:hover {
         background-color: mat-color($my-dark-blue, 600);

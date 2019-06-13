@@ -1,3 +1,30 @@
-<p>
-  app-money works!
-</p>
+<div class="moneyListContainer">
+
+  <mat-card class="listItem" *ngFor="let expense of expenses;">
+    <div class="taskDetails">
+      <div class="taskContent">
+        <div class="taskName">
+          <h3>{{expense.name}}</h3>
+        </div>
+        <div class="taskExtraInfo">
+          <span>Total paid: <span class="taskInfo">{{expense.totalPaid}}</span></span>
+          <span>Provider: <span class="taskInfo">{{expense.provider}}</span></span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="changeStatus">
+
+      <button (click)="editExpense(expense)" class="startButton">
+        <i class="material-icons">edit</i>
+      </button>
+
+      <button (click)="deleteExpense(expense.id)" class="stopButton">
+        <i class="material-icons">delete</i>
+      </button>
+
+    </div>
+
+  </mat-card>
+</div>

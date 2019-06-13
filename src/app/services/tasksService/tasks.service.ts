@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { ITasks } from '../../interfaces/ITasks';
 
@@ -103,5 +103,15 @@ export class TasksService {
       .endBefore(monthEnd)
     ).valueChanges()
   }
+
+  getDayMoney (url, day) {
+    return this.http.get(url);
+  }
+
+  editExpense (expense, url) {
+
+    return this.http.post(url, {expense: expense});
+  }
+
 
 }
