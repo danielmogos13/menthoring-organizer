@@ -11,6 +11,7 @@ import { LoginGuardService } from './services/loginGuard/login-guard.service';
 import {UserRole} from './services/appRoles/app-roles.service';
 import {UserRegistrationComponent} from './modules/app-login/user-registration/user-registration.component';
 import {AppMoneyDayViewComponent} from './modules/app-money/app-money-day-view/app-money-day-view.component';
+import {AppMoneyWeekviewComponent} from './modules/app-money/app-money-weekview/app-money-weekview.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,10 @@ const routes: Routes = [
               {
                 path: 'dayview',
                 component: AppMoneyDayViewComponent
+              },
+              {
+                path: 'weekview',
+                component: AppMoneyWeekviewComponent
               }
             ]
           },

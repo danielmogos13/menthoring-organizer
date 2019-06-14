@@ -8,14 +8,15 @@
 
   <nav mat-tab-nav-bar>
     <a mat-tab-link
-       routerLink="/app/tasks/dayview"
+       routerLink="{{buttonRoutes.dayview}}"
        [routerLinkActiveOptions]="{exact: false}"
        routerLinkActive #dayViewRouter="routerLinkActive"
        [active]="dayViewRouter.isActive">
       Day view
     </a>
+
     <a mat-tab-link
-       routerLink="/app/tasks/weekview"
+       routerLink="{{buttonRoutes.weekview}}"
        [routerLinkActiveOptions]="{exact: false}"
        routerLinkActive #weekViewRouter="routerLinkActive"
        [active]="weekViewRouter.isActive">

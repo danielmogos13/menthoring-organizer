@@ -3,14 +3,12 @@
     <nav mat-tab-nav-bar>
       <a mat-tab-link
          routerLink="/app/tasks/dayview"
-         [active]="checkIfChildRouteIsActive()">
+         [active]="checkIfTaskChildRouteIsActive()">
         Tasks
       </a>
       <a mat-tab-link
          routerLink="/app/money/dayview"
-         [routerLinkActiveOptions]="{exact: false}"
-         routerLinkActive #moneyRouter="routerLinkActive"
-         [active]="moneyRouter.isActive">
+         [active]="checkIfMoneyChildRouteIsActive()">
         Money
       </a>
     </nav>

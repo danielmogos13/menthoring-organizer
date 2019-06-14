@@ -14,8 +14,12 @@ export class AppViewsComponent implements OnInit {
 
   }
 
-  checkIfChildRouteIsActive () {
+  checkIfTaskChildRouteIsActive () {
     return this._router.url === "/app/tasks/dayview" || this._router.url === "/app/tasks/weekview";
+  }
+
+  checkIfMoneyChildRouteIsActive () {
+    return this._router.url === "/app/money/dayview" || this._router.url === "/app/money/weekview";
   }
 
 }

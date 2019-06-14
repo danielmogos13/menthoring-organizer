@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {  TasksService} from '../../services/tasksService/tasks.service';
 import {Router} from '@angular/router';
 
@@ -8,6 +8,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./app-time-interval.component.scss']
 })
 export class AppTimeIntervalComponent implements OnInit {
+  @Input() page: string;
+
   activeView = "dayview";
   daysToAddOrSubtract: number;
   currentDate = new Date();
@@ -15,11 +17,17 @@ export class AppTimeIntervalComponent implements OnInit {
   currentDayString: string = this.currentDayNumber < 10 ? "0" + this.currentDayNumber: this.currentDayNumber.toString();
   currentMonth: string = (this.currentDate.getMonth() + 1).toString();
   currentYear: number = this.currentDate.getFullYear();
+  buttonRoutes: any;
 
   constructor(private tasksService: TasksService, private _router: Router) { }
 
   ngOnInit() {
     this.tasksService.updateDate(this.currentDayNumber + '/' + this.currentMonth + "/" + this.currentYear);
+
+    this.buttonRoutes = {
+      dayview: this.page === 'tasks' ? '/app/tasks/dayview': '/app/money/dayview',
+      weekview: this.page === 'tasks' ? '/app/tasks/weekview': '/app/money/weekview',
+    }
   }
 
   changeDate(type) {
@@ -76,5 +84,6 @@ export class AppTimeIntervalComponent implements OnInit {
 
     this.tasksService.updateDate(this.currentDayNumber + '/' + this.currentMonth + "/" + this.currentYear);
   }
+
 
 }
