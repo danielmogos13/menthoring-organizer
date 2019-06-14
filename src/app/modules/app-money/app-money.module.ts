@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
-import {AppMoneyComponent} from './app-money.component';
-import {NgMaterialModule} from '../ng-material/ng-material.module';
+import { AppMoneyComponent } from './app-money.component';
 import { EditExpenseDialogComponent } from '../../components/edit-expense-dialog/edit-expense-dialog.component';
-import {AppTasksModule} from '../app-tasks/app-tasks.module';
-import {RouterModule} from '@angular/router';
 import { MoneyListComponent } from '../../components/money-list/money-list.component';
 import { AppMoneyDayViewComponent } from './app-money-day-view/app-money-day-view.component';
 import { AppMoneyWeekviewComponent } from './app-money-weekview/app-money-weekview.component';
+import { CommonCustomModulesModule } from '../app-common/commonCustomModules.module';
 
 @NgModule({
   declarations: [
@@ -20,10 +17,7 @@ import { AppMoneyWeekviewComponent } from './app-money-weekview/app-money-weekvi
   ],
   imports: [
     CommonModule,
-    NgMaterialModule,
-    ReactiveFormsModule,
-    AppTasksModule,
-    RouterModule
+    CommonCustomModulesModule,
   ],
   entryComponents: [EditExpenseDialogComponent],
 })
