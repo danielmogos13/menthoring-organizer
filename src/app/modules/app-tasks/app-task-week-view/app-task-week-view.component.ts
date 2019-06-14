@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FlatTreeControl} from '@angular/cdk/tree';
-import {TasksService} from '../../../../services/tasksService/tasks.service';
-import { LoadingSpinnerService } from '../../../../services/loading-spinner/loading-spinner.service';
+import {TasksService} from '../../../services/tasksService/tasks.service';
+import { LoadingSpinnerService } from '../../../services/loading-spinner/loading-spinner.service';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 
 interface dayOfWeekNode {

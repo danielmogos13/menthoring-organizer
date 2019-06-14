@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { TasksDialogComponent } from '../../../components/tasks-dialog/tasks-dialog.component'
-import {ActionPerformedComponent} from '../../../components/action-performed/action-performed.component';
+import { TasksDialogComponent} from '../../components/tasks-dialog/tasks-dialog.component';
 import {MatSnackBar} from '@angular/material';
+import {ActionPerformedComponent} from '../../components/action-performed/action-performed.component';
 
 
 @Component({

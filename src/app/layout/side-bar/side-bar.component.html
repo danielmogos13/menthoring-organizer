@@ -8,5 +8,5 @@
       </div>
     </div>
   </div>
-  <app-stats [months]="months"></app-stats>
+  <tasks-stats *ngIf="checkRoute('tasks')" [months]="months"></tasks-stats>
 </div>

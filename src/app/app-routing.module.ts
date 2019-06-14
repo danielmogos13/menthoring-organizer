@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppTasksComponent } from './modules/app-tasks/app-tasks/app-tasks.component';
+import { AppTasksComponent } from './modules/app-tasks/app-tasks.component';
 import { AppMoneyComponent } from './modules/app-money/app-money.component';
-import { AppTaskDayViewComponent } from './modules/app-tasks/app-tasks/app-task-day-view/app-task-day-view.component';
-import { AppTaskWeekViewComponent } from './modules/app-tasks/app-tasks/app-task-week-view/app-task-week-view.component';
+import { AppTaskDayViewComponent } from './modules/app-tasks/app-task-day-view/app-task-day-view.component';
+import { AppTaskWeekViewComponent } from './modules/app-tasks/app-task-week-view/app-task-week-view.component';
 import {LoginComponent} from './modules/app-login/login/login.component';
 import {AuthGuard} from './services/auth-guard/auth-guard.service';
 import {LayoutComponent} from './layout/layout.component';

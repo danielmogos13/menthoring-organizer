@@ -14,11 +14,11 @@ noData(Highcharts);
 
 
 @Component({
-  selector: 'app-stats',
-  templateUrl: './app-stats.component.html',
-  styleUrls: ['./app-stats.component.scss']
+  selector: 'tasks-stats',
+  templateUrl: './tasks-stats.component.html',
+  styleUrls: ['./tasks-stats.component.scss']
 })
-export class AppStatsComponent implements OnInit {
+export class TasksStatsComponent implements OnInit {
   @Input() months: any;
 
   dateChangeEvent: any;

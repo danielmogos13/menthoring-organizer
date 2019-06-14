@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'side-bar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   currentDate = new Date();
   months: any = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -24,6 +25,9 @@ export class SideBarComponent implements OnInit {
 
   }
 
+  checkRoute (page) {
+    return this._router.url.indexOf(page) !== -1;
+  }
 }
 
 
