@@ -6,6 +6,7 @@ import { MoneyListComponent } from '../../components/money-list/money-list.compo
 import { AppMoneyDayViewComponent } from './app-money-day-view/app-money-day-view.component';
 import { AppMoneyWeekviewComponent } from './app-money-weekview/app-money-weekview.component';
 import { CommonCustomModulesModule } from '../app-common/commonCustomModules.module';
+import { MoneyStatsComponent } from './money-stats/money-stats.component';
 
 @NgModule({
   declarations: [
@@ -13,11 +14,15 @@ import { CommonCustomModulesModule } from '../app-common/commonCustomModules.mod
     MoneyListComponent,
     EditExpenseDialogComponent,
     AppMoneyDayViewComponent,
-    AppMoneyWeekviewComponent
+    AppMoneyWeekviewComponent,
+    MoneyStatsComponent
   ],
   imports: [
     CommonModule,
     CommonCustomModulesModule,
+  ],
+  exports: [
+    MoneyStatsComponent
   ],
   entryComponents: [EditExpenseDialogComponent],
 })

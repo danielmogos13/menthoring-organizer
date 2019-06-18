@@ -13,6 +13,15 @@ export class AppMoneyDayViewComponent implements OnInit {
   constructor( private tasksService: TasksService) { }
 
   ngOnInit() {
+    this.getExpenses();
+  }
+
+  refreshExpenses () {
+    this.expenses = [];
+    this.getExpenses();
+  }
+
+  getExpenses () {
 
     const url = 'http://localhost:3000/money';
     let day = new Date();
@@ -24,6 +33,5 @@ export class AppMoneyDayViewComponent implements OnInit {
       // @ts-ignore
       this.expenses = this.expenses.concat(response.data);
     });
-
   }
 }

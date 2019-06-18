@@ -14,6 +14,16 @@
       <input required formControlName="expenseProvider"  matInput placeholder="Provider">
     </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+      <input required formControlName="expenseCategory"  matInput placeholder="Category">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="expenseDate" [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
   </form>
 </mat-dialog-content>
 

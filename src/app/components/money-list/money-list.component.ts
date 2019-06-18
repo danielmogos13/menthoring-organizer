@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {EditExpenseDialogComponent} from '../edit-expense-dialog/edit-expense-dialog.component';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {HttpClient} from '@angular/common/http';
@@ -13,6 +13,7 @@ import {MatDialog} from '@angular/material';
 export class MoneyListComponent implements OnInit {
   @Input() classProperty;
   @Input() expenses;
+  @Output() afterEdit = new EventEmitter();
 
   constructor(private http: HttpClient, private tasksService: TasksService, private dialog: MatDialog) { }
 
@@ -31,14 +32,7 @@ export class MoneyListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
-      for(var index = 0; index <  this.expenses.length; index++){
-        const currentExpenseId =  this.expenses[index].id;
-
-        if(currentExpenseId === result.data.id){
-          this.expenses[index] = result.data;
-        }
-      }
+      this.afterEdit.emit();
     });
   }
 
