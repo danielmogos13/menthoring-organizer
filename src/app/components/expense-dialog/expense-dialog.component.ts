@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { TasksService } from '../../services/tasksService/tasks.service';
+import { OrganizerService } from '../../services/organizerService/organizer.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -15,7 +15,7 @@ export class ExpenseDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ExpenseDialogComponent>,
   @Inject(MAT_DIALOG_DATA) public data: any,
-  private tasksService: TasksService) { }
+  private tasksService: OrganizerService) { }
 
   ngOnInit() {
 

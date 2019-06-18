@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ITasks } from '../../interfaces/ITasks';
-import { TasksService } from '../../services/tasksService/tasks.service'
+import { OrganizerService } from '../../services/organizerService/organizer.service'
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {createCheckers} from "ts-interface-checker";
 import ITasksTI from  '../../interfaces/ITasks-ti';
@@ -21,7 +21,7 @@ export class TasksDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<TasksDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-     private tasksService: TasksService) { }
+     private tasksService: OrganizerService) { }
 
   ngOnInit() {
 

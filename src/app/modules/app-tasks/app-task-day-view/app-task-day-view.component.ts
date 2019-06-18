@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TasksService } from '../../../services/tasksService/tasks.service';
+import { OrganizerService } from '../../../services/organizerService/organizer.service';
 import { ITasks } from '../../../interfaces/ITasks';
 import { LoadingSpinnerService } from '../../../services/loading-spinner/loading-spinner.service';
 
@@ -14,7 +14,7 @@ export class AppTaskDayViewComponent implements OnInit {
   dateChangeEvent: any;
   isLoading: boolean;
 
-  constructor(private tasksService: TasksService, private loadingSpinner: LoadingSpinnerService) { }
+  constructor(private tasksService: OrganizerService, private loadingSpinner: LoadingSpinnerService) { }
 
   ngOnInit() {
     this.loadingSpinner.isLoading.subscribe(loading => {

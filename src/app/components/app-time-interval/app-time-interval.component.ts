@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {  TasksService} from '../../services/tasksService/tasks.service';
+import {  OrganizerService} from '../../services/organizerService/organizer.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class AppTimeIntervalComponent implements OnInit {
   currentYear: number = this.currentDate.getFullYear();
   buttonRoutes: any;
 
-  constructor(private tasksService: TasksService, private _router: Router) { }
+  constructor(private tasksService: OrganizerService, private _router: Router) { }
 
   ngOnInit() {
     this.tasksService.updateDate(this.currentDayNumber + '/' + this.currentMonth + "/" + this.currentYear);

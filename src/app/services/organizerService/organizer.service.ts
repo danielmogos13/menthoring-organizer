@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class TasksService {
+export class OrganizerService {
   tasks: Observable<ITasks[]>;
   userId: string;
   @Output() afterChange = new EventEmitter();

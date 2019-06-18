@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TasksService} from '../../../services/tasksService/tasks.service';
+import {OrganizerService} from '../../../services/organizerService/organizer.service';
 
 @Component({
   selector: 'app-money-day-view',
@@ -11,7 +11,7 @@ export class AppMoneyDayViewComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   itemAddedEvent: any;
 
-  constructor(private tasksService: TasksService) { }
+  constructor(private tasksService: OrganizerService) { }
 
   ngOnInit() {
     this.getExpenses();

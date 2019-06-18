@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TasksService} from '../../../services/tasksService/tasks.service';
+import {OrganizerService} from '../../../services/organizerService/organizer.service';
 import * as Highcharts from 'highcharts';
 
 declare var require: any;
@@ -68,7 +68,7 @@ export class TasksStatsComponent implements OnInit {
   };
 
 
-  constructor(private tasksService: TasksService) { }
+  constructor(private tasksService: OrganizerService) { }
 
   ngOnInit() {
     let monthStart: Date;

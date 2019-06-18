@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { TasksDialogComponent } from '../tasks-dialog/tasks-dialog.component'
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 import {ITasks} from '../../interfaces/ITasks';
-import {TasksService} from '../../services/tasksService/tasks.service';
+import {OrganizerService} from '../../services/organizerService/organizer.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ActionPerformedComponent } from '../action-performed/action-performed.component';
 
@@ -16,7 +16,7 @@ export class TasksListComponent implements OnInit {
   @Input() tasks: ITasks[];
   @Input() classProperty: string;
 
-  constructor(private dialog: MatDialog, private tasksService: TasksService, private _snackBar: MatSnackBar) { }
+  constructor(private dialog: MatDialog, private tasksService: OrganizerService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
