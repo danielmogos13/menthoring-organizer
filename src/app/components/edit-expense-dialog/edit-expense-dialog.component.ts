@@ -35,7 +35,7 @@ export class EditExpenseDialogComponent implements OnInit {
   saveExpense () {
 
     this.expenseData = {
-      totalPaid: this.formExpense.value.expenseTotalPaid,
+      totalPaid: Number(this.formExpense.value.expenseTotalPaid),
       provider: this.formExpense.value.expenseProvider,
       name: this.formExpense.value.expenseName,
       category: this.formExpense.value.expenseCategory,

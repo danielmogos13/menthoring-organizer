@@ -13,7 +13,7 @@ import {MatDialog} from '@angular/material';
 export class MoneyListComponent implements OnInit {
   @Input() classProperty;
   @Input() expenses;
-  @Output() afterEdit = new EventEmitter();
+  @Output() afterChange = new EventEmitter();
 
   constructor(private http: HttpClient, private tasksService: TasksService, private dialog: MatDialog) { }
 
@@ -32,7 +32,7 @@ export class MoneyListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.afterEdit.emit();
+      this.afterChange.emit();
     });
   }
 
@@ -48,15 +48,7 @@ export class MoneyListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
-      for(var index = 0; index <  this.expenses.length; index++){
-        const currentExpenseId =  this.expenses[index].id;
-
-        if(currentExpenseId === result.data.id){
-          this.expenses.splice(index, 1);
-        }
-      }
-
+      this.afterChange.emit();
     });
 
   }
