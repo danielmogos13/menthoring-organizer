@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditExpenseDialogComponent } from './edit-expense-dialog.component';
+import { ExpenseDialogComponent } from './expense-dialog.component';
 
-describe('EditExpenseDialogComponent', () => {
-  let component: EditExpenseDialogComponent;
-  let fixture: ComponentFixture<EditExpenseDialogComponent>;
+describe('ExpenseDialogComponent', () => {
+  let component: ExpenseDialogComponent;
+  let fixture: ComponentFixture<ExpenseDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditExpenseDialogComponent ]
+      declarations: [ ExpenseDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditExpenseDialogComponent);
+    fixture = TestBed.createComponent(ExpenseDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

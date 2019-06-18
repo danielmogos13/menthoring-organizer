@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TasksService} from '../../../services/tasksService/tasks.service';
 
 @Component({
@@ -6,14 +6,20 @@ import {TasksService} from '../../../services/tasksService/tasks.service';
   templateUrl: './app-money-day-view.component.html',
   styleUrls: ['./app-money-day-view.component.scss']
 })
-export class AppMoneyDayViewComponent implements OnInit {
+export class AppMoneyDayViewComponent implements OnInit, OnDestroy {
   expenses: any = [];
   isLoading: boolean = false;
+  itemAddedEvent: any;
 
-  constructor( private tasksService: TasksService) { }
+  constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
     this.getExpenses();
+
+    this.itemAddedEvent = this.tasksService.afterChange.subscribe(expenseAdded => {
+      this.expenses = [];
+      this.getExpenses();
+    });
   }
 
   refreshExpenses () {
@@ -33,5 +39,11 @@ export class AppMoneyDayViewComponent implements OnInit {
       // @ts-ignore
       this.expenses = this.expenses.concat(response.data);
     });
+  }
+
+  ngOnDestroy () {
+    if(this.itemAddedEvent) {
+      this.itemAddedEvent.unsubscribe();
+    }
   }
 }

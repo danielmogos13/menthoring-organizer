@@ -1,9 +1,10 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {EditExpenseDialogComponent} from '../edit-expense-dialog/edit-expense-dialog.component';
+import {ExpenseDialogComponent} from '../expense-dialog/expense-dialog.component';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {HttpClient} from '@angular/common/http';
 import {TasksService} from '../../services/tasksService/tasks.service';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {ActionPerformedComponent} from '../action-performed/action-performed.component';
 
 @Component({
   selector: 'money-list',
@@ -15,7 +16,7 @@ export class MoneyListComponent implements OnInit {
   @Input() expenses;
   @Output() afterChange = new EventEmitter();
 
-  constructor(private http: HttpClient, private tasksService: TasksService, private dialog: MatDialog) { }
+  constructor(private http: HttpClient, private tasksService: TasksService, private dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,7 @@ export class MoneyListComponent implements OnInit {
 
   editExpense (expense) {
 
-    const dialogRef = this.dialog.open(EditExpenseDialogComponent, {
+    const dialogRef = this.dialog.open(ExpenseDialogComponent, {
       width: '450px',
       data: {
         operation: 'edit',
@@ -33,6 +34,7 @@ export class MoneyListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.afterChange.emit();
+      this.openSnackBar("Expense edited");
     });
   }
 
@@ -49,7 +51,15 @@ export class MoneyListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.afterChange.emit();
+      this.openSnackBar("Expense deleted");
     });
+  }
 
+  openSnackBar(text) {
+    this._snackBar.openFromComponent(ActionPerformedComponent, {
+      data: { message: text },
+      duration: 5000,
+      verticalPosition: 'top'
+    });
   }
 }

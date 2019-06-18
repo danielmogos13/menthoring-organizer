@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { ITasks } from '../../interfaces/ITasks';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { ITasks } from '../../interfaces/ITasks';
 export class TasksService {
   tasks: Observable<ITasks[]>;
   userId: string;
+  @Output() afterChange = new EventEmitter();
 
   private dateSubject = new BehaviorSubject<string>('date');
   currentDate = this.dateSubject.asObservable();
@@ -122,5 +124,10 @@ export class TasksService {
     return this.http.delete(url, options);
   }
 
+  addExpense (url, expense) {
+    return this.http.put(url, {expense: expense}).pipe(map(items => {
+      this.afterChange.emit(expense);
+    }));
+  }
 
 }

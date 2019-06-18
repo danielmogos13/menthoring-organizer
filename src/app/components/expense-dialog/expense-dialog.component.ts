@@ -5,15 +5,15 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'edit-expense-dialog',
-  templateUrl: './edit-expense-dialog.component.html',
-  styleUrls: ['./edit-expense-dialog.component.scss']
+  templateUrl: './expense-dialog.component.html',
+  styleUrls: ['./expense-dialog.component.scss']
 })
-export class EditExpenseDialogComponent implements OnInit {
+export class ExpenseDialogComponent implements OnInit {
   expenseData: any;
   operation: string;
   formExpense: any;
 
-  constructor(public dialogRef: MatDialogRef<EditExpenseDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<ExpenseDialogComponent>,
   @Inject(MAT_DIALOG_DATA) public data: any,
   private tasksService: TasksService) { }
 
@@ -47,11 +47,25 @@ export class EditExpenseDialogComponent implements OnInit {
 
     this.tasksService.editExpense(this.expenseData, url)
       .subscribe(result => {
-        this.dialogRef.close(result);
+        this.dialogRef.close("success");
       });
   }
 
   addExpense () {
+    const url = 'http://localhost:3000/money';
+
+    // @ts-ignore
+    this.expenseData = {
+      totalPaid: Number(this.formExpense.value.expenseTotalPaid),
+      provider: this.formExpense.value.expenseProvider,
+      name: this.formExpense.value.expenseName,
+      category: this.formExpense.value.expenseCategory,
+      date: this.formExpense.value.expenseDate,
+    };
+
+    this.tasksService.addExpense(url, this.expenseData).subscribe(result => {
+      this.dialogRef.close('success');
+    });
 
   }
 

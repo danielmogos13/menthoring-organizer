@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppMoneyComponent } from './app-money.component';
-import { EditExpenseDialogComponent } from '../../components/edit-expense-dialog/edit-expense-dialog.component';
+import { ExpenseDialogComponent } from '../../components/expense-dialog/expense-dialog.component';
 import { MoneyListComponent } from '../../components/money-list/money-list.component';
 import { AppMoneyDayViewComponent } from './app-money-day-view/app-money-day-view.component';
 import { AppMoneyWeekviewComponent } from './app-money-weekview/app-money-weekview.component';
@@ -12,7 +12,7 @@ import { MoneyStatsComponent } from './money-stats/money-stats.component';
   declarations: [
     AppMoneyComponent,
     MoneyListComponent,
-    EditExpenseDialogComponent,
+    ExpenseDialogComponent,
     AppMoneyDayViewComponent,
     AppMoneyWeekviewComponent,
     MoneyStatsComponent
@@ -24,6 +24,6 @@ import { MoneyStatsComponent } from './money-stats/money-stats.component';
   exports: [
     MoneyStatsComponent
   ],
-  entryComponents: [EditExpenseDialogComponent],
+  entryComponents: [ExpenseDialogComponent],
 })
 export class AppMoneyModule { }
