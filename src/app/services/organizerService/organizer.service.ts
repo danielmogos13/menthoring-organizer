@@ -106,11 +106,19 @@ export class OrganizerService {
     ).valueChanges()
   }
 
-  getDayMoney (url, day) {
-    return this.http.get(url);
+  getDayExpenses (url, date) {
+    const timestamp = this.getTimestamp(date);
+
+    const options = {
+      params: new HttpParams().set('date', String(timestamp))
+    };
+
+    return this.http.get(url, options);
   }
 
   editExpense (expense, url) {
+    const dateString = this.getDateString(expense.date);
+    expense.date = new Date(dateString).getTime();
 
     return this.http.post(url, {expense: expense});
   }
@@ -125,9 +133,32 @@ export class OrganizerService {
   }
 
   addExpense (url, expense) {
+    const dateString = this.getDateString(expense.date);
+    expense.date = new Date(dateString).getTime();
+
     return this.http.put(url, {expense: expense}).pipe(map(items => {
       this.afterChange.emit(expense);
     }));
   }
+
+  getDateString = dateObject => {
+    const year = dateObject.getFullYear();
+    const month = dateObject.getMonth() + 1;
+    const day = dateObject.getDate();
+
+    return year + "-" + (month < 10 ? "0" + month: month) + "-" + (day < 10 ? "0" + day: day) + "T00:00:00";
+  };
+
+  getTimestamp = date => {
+
+    const dateParts = date.split("/");
+    const year = Number(dateParts[2]);
+    const month = Number(dateParts[1]);
+    const day = Number(dateParts[0]);
+
+    let dateString = year + "-" + (month < 10 ? "0" + month: month) + "-" + (day < 10 ? "0" + day: day) + "T00:00:00";
+    return new Date(dateString).getTime();
+  };
+
 
 }

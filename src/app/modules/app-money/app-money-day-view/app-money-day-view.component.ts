@@ -10,30 +10,37 @@ export class AppMoneyDayViewComponent implements OnInit, OnDestroy {
   expenses: any = [];
   isLoading: boolean = false;
   itemAddedEvent: any;
+  dateChangeEvent: any;
+  date: any;
 
   constructor(private tasksService: OrganizerService) { }
 
   ngOnInit() {
-    this.getExpenses();
 
     this.itemAddedEvent = this.tasksService.afterChange.subscribe(expenseAdded => {
-      this.expenses = [];
-      this.getExpenses();
+      this.getExpenses(this.date);
+    });
+
+
+    this.dateChangeEvent = this.tasksService.currentDate.subscribe(date => {
+      this.date = date;
+
+      this.getExpenses(date);
+
     });
   }
 
   refreshExpenses () {
-    this.expenses = [];
-    this.getExpenses();
+    this.getExpenses(this.date);
   }
 
-  getExpenses () {
+  getExpenses (date) {
 
+    this.expenses = [];
     const url = 'http://localhost:3000/money';
-    let day = new Date();
 
     this.isLoading = true;
-    this.tasksService.getDayMoney(url, day).subscribe(response => {
+    this.tasksService.getDayExpenses(url, date).subscribe(response => {
 
       this.isLoading = false;
       // @ts-ignore
@@ -44,6 +51,10 @@ export class AppMoneyDayViewComponent implements OnInit, OnDestroy {
   ngOnDestroy () {
     if(this.itemAddedEvent) {
       this.itemAddedEvent.unsubscribe();
+    }
+
+    if(this.dateChangeEvent){
+      this.dateChangeEvent.unsubscribe();
     }
   }
 }

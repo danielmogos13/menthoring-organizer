@@ -27,7 +27,7 @@ export class ExpenseDialogComponent implements OnInit {
       expenseTotalPaid: new FormControl(this.expenseData.totalPaid, Validators.minLength(2)),
       expenseProvider: new FormControl(this.expenseData.provider, Validators.minLength(2)),
       expenseCategory: new FormControl(this.expenseData.category, Validators.minLength(2)),
-      expenseDate: new FormControl(this.expenseData.date, Validators.required),
+      expenseDate: new FormControl(new Date(this.expenseData.date), Validators.required),
     });
   }
 

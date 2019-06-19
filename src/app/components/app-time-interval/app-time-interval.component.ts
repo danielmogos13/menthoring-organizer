@@ -26,14 +26,14 @@ export class AppTimeIntervalComponent implements OnInit {
 
     this.buttonRoutes = {
       dayview: this.page === 'tasks' ? '/app/tasks/dayview': '/app/money/dayview',
-      weekview: this.page === 'tasks' ? '/app/tasks/weekview': '/app/money/weekview',
+      weekview: this.page === 'money' ? '/app/money/weekview': '/app/tasks/weekview',
     }
+
   }
 
   changeDate(type) {
 
-    this.activeView = this._router.url === "/app/tasks/dayview" ? 'dayview': 'weekview';
-
+    this.activeView = this._router.url.includes('dayview') ? 'dayview': 'weekview';
 
     if(this.activeView === 'dayview'){
       this.daysToAddOrSubtract = 1;
