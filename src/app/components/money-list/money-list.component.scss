@@ -10,34 +10,34 @@
     justify-content: space-between;
     &:hover {
       color: white;
-      .changeStatus {
+      .itemActions {
         .material-icons {
           color: white;
         }
       }
-      .taskDetails {
+      .expenseDetails {
         .material-icons {
           color: white;
         }
 
       }
     }
-    .taskDetails {
+    .expenseDetails {
       display: flex;
       align-items: center;
 
-      .taskName {
+      .expenseName {
         h3 {
           margin: 0;
           padding: 0;
         }
       }
-      .taskExtraInfo{
+      .expenseExtraInfo{
         font-size: 13px;
         span {
           margin-right: 20px;
         }
-        .taskInfo {
+        .expenseInfo {
           font-weight: 600;
         }
       }
@@ -52,7 +52,7 @@
         }
       }
     }
-    .changeStatus {
+    .itemActions {
       margin-right: 20px;
       button{
         background: transparent;

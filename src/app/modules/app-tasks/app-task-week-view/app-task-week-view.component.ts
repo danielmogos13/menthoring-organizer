@@ -74,7 +74,7 @@ export class AppTaskWeekViewComponent implements OnInit, OnDestroy {
           this.weekDays.push(
             {
               name: parseInt(day) + index + ' ' + this.months[parseInt(month) - 1] + ' ' + year,
-              date: year + "-" + month + "-" + (parseInt(day) + index)
+              date: year + "/" + month + "/" + (parseInt(day) + index)
             }
           );
         }else {
@@ -85,12 +85,11 @@ export class AppTaskWeekViewComponent implements OnInit, OnDestroy {
           this.weekDays.push(
             {
               name:  index - (maximDays - parseInt(day)) + " " + currentMonth + " " + year,
-              date: year + "-" + (parseInt(month) + 1) + "-" + (index - (maximDays - parseInt(day)))
+              date: year + "/" + (parseInt(month) + 1) + "/" + (index - (maximDays - parseInt(day)))
             }
           );
         }
       }
-
 
       this.updateTree(this.weekDays);
     });
@@ -153,7 +152,7 @@ export class AppTaskWeekViewComponent implements OnInit, OnDestroy {
           let month = itemDate.getMonth() + 1;
           let day = itemDate.getDate();
 
-          let itemStringDate = year + '-' + month + '-' + day;
+          let itemStringDate = year + '/' + month + '/' + day;
 
           if (itemStringDate === weekItems.date) {
             weekItems.children.push(dataItem);

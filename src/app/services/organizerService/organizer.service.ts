@@ -50,7 +50,7 @@ export class OrganizerService {
     this.userId = JSON.parse(localStorage.getItem('currentUser')).uid;
 
     const dateQueries = datesUnformatted.map(dateItem => {
-      let dateArray = dateItem.date.split("-");
+      let dateArray = dateItem.date.split("/");
       let day = dateArray[2] < 10 ? "0" + dateArray[2]: dateArray[2];
       let date = dateArray[0] + "-" + (parseInt(dateArray[1]) < 10 ? "0" + dateArray[1]: dateArray[1]) + "-" + day + "T00:00:00";
       return date
@@ -111,6 +111,22 @@ export class OrganizerService {
 
     const options = {
       params: new HttpParams().set('date', String(timestamp))
+    };
+
+    return this.http.get(url, options);
+  }
+
+  getWeekExpenses (url, dates) {
+    const timestamps = [];
+
+    for(let index = 0; index < dates.length; index++){
+      const currentItemDate = this.getTimestamp(dates[index].date);
+      timestamps.push(currentItemDate);
+    }
+
+    const options = {
+      // @ts-ignore
+      params: new HttpParams().set('dates', timestamps)
     };
 
     return this.http.get(url, options);

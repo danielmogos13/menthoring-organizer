@@ -1,26 +1,26 @@
-<div class="moneyListContainer">
+<div class="moneyListContainer {{classProperty}} ">
 
   <mat-card class="listItem" *ngFor="let expense of expenses;">
-    <div class="taskDetails">
-      <div class="taskContent">
-        <div class="taskName">
+    <div class="expenseDetails">
+      <div class="expenseContent">
+        <div class="expenseName">
           <h3>{{expense.name}}</h3>
         </div>
-        <div class="taskExtraInfo">
-          <span>Total paid: <span class="taskInfo">{{expense.totalPaid}}</span></span>
-          <span>Provider: <span class="taskInfo">{{expense.provider}}</span></span>
+        <div class="expenseExtraInfo">
+          <span>Total paid: <span class="expenseInfo">{{expense.totalPaid}}</span></span>
+          <span>Provider: <span class="expenseInfo">{{expense.provider}}</span></span>
         </div>
       </div>
 
     </div>
 
-    <div class="changeStatus">
+    <div class="itemActions">
 
-      <button (click)="editExpense(expense)" class="startButton">
+      <button (click)="editExpense(expense)">
         <i class="material-icons">edit</i>
       </button>
 
-      <button (click)="deleteExpense(expense._id)" class="stopButton">
+      <button (click)="deleteExpense(expense._id)">
         <i class="material-icons">delete</i>
       </button>
 
