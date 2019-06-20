@@ -22,7 +22,7 @@
         </button>
       </div>
 
-      <money-list [classProperty]="'weekview'" *ngIf="treeControl.isExpanded(node)" [expenses]="node.children"></money-list>
+      <money-list (afterChange)="refreshExpenses()" [classProperty]="'weekview'" *ngIf="treeControl.isExpanded(node)" [expenses]="node.children"></money-list>
     </mat-tree-node>
   </mat-tree>
 

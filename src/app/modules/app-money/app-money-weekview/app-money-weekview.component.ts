@@ -46,6 +46,10 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
       this.isLoading = loading
     });
 
+    this.organizerService.afterChange.subscribe(expenseAdded => {
+      this.updateTree(this.weekDays);
+    });
+
     this.expandedNodes = [];
 
     this.dateChangeEvent = this.organizerService.currentDate.subscribe(date => {
@@ -86,6 +90,10 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
       this.updateTree(this.weekDays);
     });
   }
+
+  refreshExpenses = () => {
+    this.updateTree(this.weekDays)
+  };
 
 
   updateTree(weekdays) {
