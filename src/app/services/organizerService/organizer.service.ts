@@ -177,4 +177,15 @@ export class OrganizerService {
   };
 
 
+  saveSettings = (url, settings) => {
+    return this.http.post(url, {settings: settings});
+  };
+
+  getSettings(url) {
+    return this.http.get(url).pipe(map(result => {
+      // @ts-ignore
+      return result.data[0];
+    }));
+  }
+
 }

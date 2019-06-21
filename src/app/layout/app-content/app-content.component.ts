@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AppLoginService} from '../../modules/app-login/app-login.service';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {ExpenseSettingsComponent} from '../../components/expense-settings/expense-settings.component';
+
 
 @Component({
   selector: 'app-content',
@@ -12,7 +15,9 @@ export class AppContentComponent implements OnInit {
   noProfilePicPath = '../../../assets/img/noProfilePic.png';
   imagePath: string;
 
-  constructor(private loginService: AppLoginService, private _router: Router) { }
+  constructor(private loginService: AppLoginService,
+  private _router: Router,
+  private dialog: MatDialog) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -26,4 +31,18 @@ export class AppContentComponent implements OnInit {
         this._router.navigate(['/login']);
     })
   }
+
+  showExpenseSettingsModal () {
+    const dialogRef = this.dialog.open(ExpenseSettingsComponent, {
+      width: '450px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'success'){
+        location.reload();
+      }
+    });
+
+  }
+
 }

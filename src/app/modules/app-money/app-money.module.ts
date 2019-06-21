@@ -7,6 +7,7 @@ import { AppMoneyDayViewComponent } from './app-money-day-view/app-money-day-vie
 import { AppMoneyWeekviewComponent } from './app-money-weekview/app-money-weekview.component';
 import { CommonCustomModulesModule } from '../app-common/commonCustomModules.module';
 import { MoneyStatsComponent } from './money-stats/money-stats.component';
+import { ExpenseSettingsComponent } from '../../components/expense-settings/expense-settings.component';
 
 @NgModule({
   declarations: [
@@ -15,15 +16,17 @@ import { MoneyStatsComponent } from './money-stats/money-stats.component';
     ExpenseDialogComponent,
     AppMoneyDayViewComponent,
     AppMoneyWeekviewComponent,
-    MoneyStatsComponent
+    MoneyStatsComponent,
+    ExpenseSettingsComponent
   ],
   imports: [
     CommonModule,
     CommonCustomModulesModule,
   ],
   exports: [
-    MoneyStatsComponent
+    MoneyStatsComponent,
+    ExpenseSettingsComponent
   ],
-  entryComponents: [ExpenseDialogComponent],
+  entryComponents: [ExpenseDialogComponent, ExpenseSettingsComponent],
 })
 export class AppMoneyModule { }

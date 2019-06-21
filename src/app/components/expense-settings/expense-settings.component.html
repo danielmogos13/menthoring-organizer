@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Expense settings</h2>
+
+<mat-dialog-content class="mat-typography">
+  <form name="taskForm" [formGroup]="formExpenseSettings" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input type='number' autocomplete="off" required formControlName="monthlyIncome" matInput placeholder="Monthly income">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Month start date</mat-label>
+      <mat-select formControlName="monthStart">
+        <mat-option *ngFor="let day of monthDays" [value]="day">
+          {{day}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Month end date</mat-label>
+      <mat-select formControlName="monthEnd">
+        <mat-option *ngFor="let day of monthDays" [value]="day">
+          {{day}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [disabled]="formExpenseSettings.invalid" (click)="saveSettings()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
