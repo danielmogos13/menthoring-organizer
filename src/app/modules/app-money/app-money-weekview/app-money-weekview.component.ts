@@ -47,7 +47,7 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
     });
 
     this.organizerService.afterChange.subscribe(expenseAdded => {
-      this.updateTree(this.weekDays);
+      this.refreshTreeData(this.weekDays);
     });
 
     this.expandedNodes = [];
@@ -92,7 +92,7 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
   }
 
   refreshExpenses = () => {
-    this.updateTree(this.weekDays)
+    this.refreshTreeData(this.weekDays)
   };
 
 
@@ -116,6 +116,10 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
 
 
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, treeFlattener);
+    this.refreshTreeData(weekdays);
+  }
+
+  refreshTreeData = (weekdays) => {
 
     if(this.getDataObservable){
       this.getDataObservable.unsubscribe();
@@ -125,6 +129,7 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
     const url = 'http://localhost:3000/money';
 
     this.getDataObservable = this.organizerService.getWeekExpenses(url, weekdays).subscribe(response => {
+
 
       let dataNodes = this.treeControl.dataNodes;
 
@@ -165,6 +170,7 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
         }
       });
 
+
       this.dataSource.data = weekdays;
 
       let nodes = this.treeControl.dataNodes;
@@ -184,9 +190,11 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
       }
 
       this.loadingSpinner.hide();
+
     });
 
-  }
+
+  };
 
   ngOnDestroy() {
     this.dateChangeEvent.unsubscribe();
