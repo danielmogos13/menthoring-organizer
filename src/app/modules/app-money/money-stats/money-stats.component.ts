@@ -24,7 +24,9 @@ export class MoneyStatsComponent implements OnInit {
   dateChangeEvent: any;
   date: any;
   title: string;
-  moneyStatsData: any;
+  expenseCategories: any;
+  totalExpenses: any;
+  userSettings: any;
 
   constructor(private organizerService: OrganizerService) { }
 
@@ -48,20 +50,25 @@ export class MoneyStatsComponent implements OnInit {
 
       this.title = this.months[month-1] + " " + year;
 
+      this.expenseCategories = JSON.parse(localStorage.getItem('currentCategories'));
+      this.totalExpenses = JSON.parse(localStorage.getItem('totalExpenses'));
+      this.userSettings = JSON.parse(localStorage.getItem('currentSettings'));
 
       this.initMonthlyTotalExpenses();
-
       this.initExpensesByCategory();
 
     });
 
-
-    this.moneyStatsData = JSON.parse(localStorage.getItem('currentSettings'));
-
-
   }
 
   initMonthlyTotalExpenses = () => {
+    let moneySpent = Number(this.totalExpenses);
+    let monthlyIncome =  Number(this.userSettings.monthlyIncome);
+    let moneyLeft = monthlyIncome - moneySpent;
+
+    let moneySpentPercentage = ((moneySpent * 100) / monthlyIncome).toFixed(2);
+    let moneyLeftPercentage = ((moneyLeft * 100) / monthlyIncome).toFixed(2);
+
     let chart = Highcharts.chart('monthlyExpensesContainer', {
       chart: {
         plotBackgroundColor: null,
@@ -70,6 +77,13 @@ export class MoneyStatsComponent implements OnInit {
         type: 'pie',
         height: 200,
         width: 200
+      },
+      tooltip: {
+        headerFormat: '',
+        pointFormat:
+          '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+          'Amount: <b>{point.z}</b><br/>' +
+          'Percentage: <b>{point.y}</b><br/>'
       },
       title: {
         text: ''
@@ -91,12 +105,14 @@ export class MoneyStatsComponent implements OnInit {
         'colorByPoint': true,
         'data': [{
           'name': 'Money left',
-          'y': 61.41,
+          'y': Number(moneyLeftPercentage),
+          "z": moneyLeft,
           'sliced': true,
           'selected': true
         }, {
           'name': 'Money spent',
-          'y': 11.84
+          'y': Number(moneySpentPercentage),
+          "z": moneySpent
         }]
       }]
 
@@ -104,6 +120,21 @@ export class MoneyStatsComponent implements OnInit {
   };
 
   initExpensesByCategory = () => {
+    let categoriesChartData = [];
+
+    for (let index = 0; index < this.expenseCategories.length; index++) {
+      let currentItem = {
+        name: this.expenseCategories[index].name,
+        y: 16,
+        z: 20
+      };
+
+      categoriesChartData.push(currentItem);
+    }
+
+    categoriesChartData[0].sliced = true;
+    categoriesChartData[0].selected = true;
+
     let chart = Highcharts.chart('categoryExpensesContainer', {
       chart: {
         plotBackgroundColor: null,
@@ -112,6 +143,13 @@ export class MoneyStatsComponent implements OnInit {
         type: 'pie',
         height: 300,
         width: 200
+      },
+      tooltip: {
+        headerFormat: '',
+        pointFormat:
+          '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+          'Amount: <b>{point.z}</b><br/>' +
+          'Percentage: <b>{point.y}</b><br/>'
       },
       title: {
         text: ''
@@ -131,30 +169,7 @@ export class MoneyStatsComponent implements OnInit {
       series: [{
         'name': 'Percentage',
         'colorByPoint': true,
-        'data': [
-          {
-            'name': 'Divertisment',
-            'y': 61.41,
-            'sliced': true,
-            'selected': true
-          },
-          {
-            'name': 'Masina',
-            'y': 11.84
-          },
-          {
-            'name': 'Mancare',
-            'y': 11.84
-          },
-          {
-            'name': 'Facturi',
-            'y': 11.84
-          },
-          {
-            'name': 'Rate banca',
-            'y': 11.84
-          }
-        ]
+        'data': categoriesChartData
       }]
 
     });
