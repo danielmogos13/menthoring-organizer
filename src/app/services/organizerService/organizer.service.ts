@@ -115,11 +115,27 @@ export class OrganizerService {
   getDayExpenses (url, date) {
     const timestamp = this.getTimestamp(date);
 
+    let monthStartPart = date.split("/");
+    let monthStart = "01/" + monthStartPart[1] + "/" + monthStartPart[2];
+    let monthStartTimestamp = this.getTimestamp(monthStart);
+
+    let numberOfDays = new Date(monthStartPart[2], monthStartPart[1], 0).getDate();
+    let monthEnd = numberOfDays + "/" + monthStartPart[1] + "/" + monthStartPart[2];
+    let monthEndTimestamp = this.getTimestamp(monthEnd);
+
     const options = {
-      params: new HttpParams().set('date', String(timestamp))
+      params: new HttpParams()
+        .set('date', String(timestamp))
+        .append('monthStart',  String(monthStartTimestamp))
+        .append('monthEnd', String(monthEndTimestamp)),
     };
 
-    return this.http.get(url, options);
+    return this.http.get(url, options).pipe(map((result) => {
+      // @ts-ignore
+      localStorage.setItem('expensesByCategory', JSON.stringify(result.expensesByCategory));
+      // @ts-ignore
+      return result;
+    }));
   }
 
   getWeekExpenses (url, dates) {

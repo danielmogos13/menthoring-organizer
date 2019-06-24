@@ -50,7 +50,7 @@ export class MoneyStatsComponent implements OnInit {
 
       this.title = this.months[month-1] + " " + year;
 
-      this.expenseCategories = JSON.parse(localStorage.getItem('currentCategories'));
+      this.expenseCategories = JSON.parse(localStorage.getItem('expensesByCategory'));
       this.totalExpenses = JSON.parse(localStorage.getItem('totalExpenses'));
       this.userSettings = JSON.parse(localStorage.getItem('currentSettings'));
 
@@ -122,13 +122,17 @@ export class MoneyStatsComponent implements OnInit {
   initExpensesByCategory = () => {
     let categoriesChartData = [];
 
+    let moneySpent = Number(this.totalExpenses);
+
     for (let index = 0; index < this.expenseCategories.length; index++) {
+
+      let moneySpentPercentage = ((this.expenseCategories[index].total * 100) / moneySpent).toFixed(2);
+
       let currentItem = {
         name: this.expenseCategories[index].name,
-        y: 16,
-        z: 20
+        z: this.expenseCategories[index].total,
+        y: Number(moneySpentPercentage)
       };
-
       categoriesChartData.push(currentItem);
     }
 
