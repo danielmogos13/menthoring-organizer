@@ -194,7 +194,8 @@ export class OrganizerService {
       // @ts-ignore
       localStorage.setItem('currentSettings', JSON.stringify(settings));
       // @ts-ignore
-      localStorage.setItem('currentCategories', JSON.stringify(savedSettings.expenseCategories));
+
+      localStorage.setItem('currentCategories', JSON.stringify(result.data));
 
     }));
   };
