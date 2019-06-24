@@ -17,6 +17,7 @@ export class ExpenseSettingsComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   expenseCategories: any;
+  totalExpenses: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
 
@@ -49,6 +50,7 @@ export class ExpenseSettingsComponent implements OnInit {
       });
 
       this.expenseCategories = this.expenseCategories.concat(data.categories);
+      this.totalExpenses = settings.totalExpenses;
     })
   }
 
@@ -59,7 +61,8 @@ export class ExpenseSettingsComponent implements OnInit {
       monthlyIncome: this.formExpenseSettings.value.monthlyIncome,
       monthStart: this.formExpenseSettings.value.monthStart,
       monthEnd: this.formExpenseSettings.value.monthEnd,
-      expenseCategories: this.expenseCategories
+      expenseCategories: this.expenseCategories,
+      totalExpenses: this.totalExpenses
     };
 
     this.organizerService.saveSettings(url, settings).subscribe( (result) => {

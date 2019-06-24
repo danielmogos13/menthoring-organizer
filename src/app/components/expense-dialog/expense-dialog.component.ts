@@ -12,6 +12,7 @@ export class ExpenseDialogComponent implements OnInit {
   expenseData: any;
   operation: string;
   formExpense: any;
+  categories: any;
 
   constructor(public dialogRef: MatDialogRef<ExpenseDialogComponent>,
   @Inject(MAT_DIALOG_DATA) public data: any,
@@ -21,6 +22,7 @@ export class ExpenseDialogComponent implements OnInit {
 
     this.operation = this.data.operation;
     this.expenseData = Object.assign({}, this.data.expense);
+    this.categories = JSON.parse(localStorage.getItem('currentCategories'));
 
     this.formExpense = new FormGroup({
       expenseName: new FormControl(this.expenseData.name, Validators.minLength(2)),

@@ -14,8 +14,13 @@
       <input required formControlName="expenseProvider"  matInput placeholder="Provider">
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <input required formControlName="expenseCategory"  matInput placeholder="Category">
+    <mat-form-field>
+      <mat-label>Choose category</mat-label>
+      <mat-select formControlName="expenseCategory">
+        <mat-option *ngFor="let category of categories" [value]="category._id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field>

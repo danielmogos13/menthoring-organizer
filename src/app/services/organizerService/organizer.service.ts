@@ -142,7 +142,12 @@ export class OrganizerService {
     const dateString = this.getDateString(expense.date);
     expense.date = new Date(dateString).getTime();
 
-    return this.http.post(url, {expense: expense});
+    return this.http.post(url, {expense: expense}).pipe(map((items) => {
+
+      // @ts-ignore
+      let totalExpenses = items.data.value.totalExpenses;
+      localStorage.setItem('totalExpenses', totalExpenses);
+    }));
   }
 
   deleteExpense (expenseId, url) {
@@ -151,7 +156,11 @@ export class OrganizerService {
       params: new HttpParams().set('expenseId', expenseId)
     };
 
-    return this.http.delete(url, options);
+    return this.http.delete(url, options).pipe(map((result) => {
+      // @ts-ignore
+      let totalExpenses = result.data.value.totalExpenses;
+      localStorage.setItem('totalExpenses', totalExpenses);
+    }));
   }
 
   addExpense (url, expense) {
@@ -159,6 +168,9 @@ export class OrganizerService {
     expense.date = new Date(dateString).getTime();
 
     return this.http.put(url, {expense: expense}).pipe(map(items => {
+      // @ts-ignore
+      let totalExpenses = items.data.value.totalExpenses + expense.totalPaid;
+      localStorage.setItem('totalExpenses', totalExpenses);
       this.afterChange.emit(expense);
     }));
   }
