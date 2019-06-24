@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrganizerService} from '../../services/organizerService/organizer.service';
-import {MatDialogRef} from '@angular/material';
+import {MatChipInputEvent, MatDialogRef} from '@angular/material';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'expense-settings',
@@ -11,10 +12,20 @@ import {MatDialogRef} from '@angular/material';
 export class ExpenseSettingsComponent implements OnInit {
   formExpenseSettings: any;
   monthDays: any = [];
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  expenseCategories: any;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
+
 
   constructor(private organizerService: OrganizerService, public dialogRef: MatDialogRef<ExpenseSettingsComponent>) { }
 
   ngOnInit() {
+
+    this.expenseCategories = [];
 
     const url = 'http://localhost:3000/settings';
 
@@ -28,12 +39,16 @@ export class ExpenseSettingsComponent implements OnInit {
       monthEnd: new FormControl("", Validators.minLength(2)),
     });
 
-    this.organizerService.getSettings(url).subscribe(item => {
+    this.organizerService.getSettings(url).subscribe(data => {
+      let settings = data.settings[0];
+
       this.formExpenseSettings.patchValue({
-        monthlyIncome: item.monthlyIncome,
-        monthStart: item.monthStart,
-        monthEnd: item.monthEnd
+        monthlyIncome: settings.monthlyIncome,
+        monthStart: settings.monthStart,
+        monthEnd: settings.monthEnd
       });
+
+      this.expenseCategories = this.expenseCategories.concat(data.categories);
     })
   }
 
@@ -44,6 +59,7 @@ export class ExpenseSettingsComponent implements OnInit {
       monthlyIncome: this.formExpenseSettings.value.monthlyIncome,
       monthStart: this.formExpenseSettings.value.monthStart,
       monthEnd: this.formExpenseSettings.value.monthEnd,
+      expenseCategories: this.expenseCategories
     };
 
     this.organizerService.saveSettings(url, settings).subscribe( (result) => {
@@ -51,4 +67,29 @@ export class ExpenseSettingsComponent implements OnInit {
     });
   }
 
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    const maxLength = 10;
+
+    let exists = this.expenseCategories.find(obj => obj.name === value);
+    let categoriesLength = this.expenseCategories.length;
+
+    if ((value || '').trim() && !exists && categoriesLength < maxLength) {
+      this.expenseCategories.push({name: value.trim()});
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(fruit): void {
+    const index = this.expenseCategories.indexOf(fruit);
+
+    if (index >= 0) {
+      this.expenseCategories.splice(index, 1);
+    }
+  }
 }

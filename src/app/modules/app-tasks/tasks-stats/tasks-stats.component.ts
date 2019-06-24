@@ -80,8 +80,6 @@ export class TasksStatsComponent implements OnInit {
 
     this.dateChangeEvent = this.tasksService.currentDate.subscribe(date => {
 
-
-      if(date !== 'date'){
         this.date = date;
 
         let dateParts = date.split("/");
@@ -127,7 +125,7 @@ export class TasksStatsComponent implements OnInit {
         });
 
 
-      }
+
     });
 
 

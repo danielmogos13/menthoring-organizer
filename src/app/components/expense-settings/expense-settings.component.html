@@ -24,6 +24,22 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field class="example-chip-list">
+      <mat-chip-list #chipList aria-label="Categories">
+        <mat-chip *ngFor="let category of expenseCategories" [selectable]="selectable"
+                  [removable]="removable" (removed)="remove(category)">
+          {{category.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Expense categories"
+               autocomplete="off"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
   </form>
 </mat-dialog-content>
 

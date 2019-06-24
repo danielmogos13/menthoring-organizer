@@ -5,8 +5,9 @@ import {
   MatSidenavModule, MatTabsModule, MatCardModule, MatDialogModule,
   MatFormFieldModule, MatInputModule, MatDatepickerModule,
   MatSelectModule, MatBadgeModule, MatProgressSpinnerModule,
-  MatSnackBarModule, MatMenuModule, MatNativeDateModule, MAT_DATE_LOCALE
+  MatSnackBarModule, MatMenuModule, MatNativeDateModule, MAT_DATE_LOCALE, MatChipsModule
 } from '@angular/material';
+
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from '../../app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -51,6 +52,7 @@ import { AppTimeIntervalComponent } from '../../components/app-time-interval/app
     MatDatepickerModule,
     MatNativeDateModule,
     RouterModule,
+    MatChipsModule
   ],
   exports: [
     CommonModule,
@@ -79,7 +81,8 @@ import { AppTimeIntervalComponent } from '../../components/app-time-interval/app
     MatDatepickerModule,
     MatNativeDateModule,
     RouterModule,
-    AppTimeIntervalComponent
+    AppTimeIntervalComponent,
+    MatChipsModule
   ],
   entryComponents: [DeleteDialogComponent, ActionPerformedComponent],
   providers: [

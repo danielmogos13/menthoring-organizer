@@ -22,7 +22,6 @@ export class AppTimeIntervalComponent implements OnInit {
   constructor(private tasksService: OrganizerService, private _router: Router) { }
 
   ngOnInit() {
-    this.tasksService.updateDate(this.currentDayNumber + '/' + this.currentMonth + "/" + this.currentYear);
 
     this.buttonRoutes = {
       dayview: this.page === 'tasks' ? '/app/tasks/dayview': '/app/money/dayview',

@@ -13,7 +13,13 @@ export class OrganizerService {
   userId: string;
   @Output() afterChange = new EventEmitter();
 
-  private dateSubject = new BehaviorSubject<string>('date');
+  todayDate = new Date();
+  currentDayNumber: number = this.todayDate.getDate();
+  currentDayString: string = this.currentDayNumber < 10 ? "0" + this.currentDayNumber: this.currentDayNumber.toString();
+  currentMonth: string = (this.todayDate.getMonth() + 1).toString();
+  currentYear: number = this.todayDate.getFullYear();
+
+  private dateSubject = new BehaviorSubject<string>(this.currentDayNumber + '/' + this.currentMonth + "/" + this.currentYear);
   currentDate = this.dateSubject.asObservable();
   constructor(private http: HttpClient, private firestore: AngularFirestore) {
   }
@@ -176,15 +182,27 @@ export class OrganizerService {
     return new Date(dateString).getTime();
   };
 
-
   saveSettings = (url, settings) => {
-    return this.http.post(url, {settings: settings});
+    let savedSettings = settings;
+    return this.http.post(url, {settings: savedSettings}).pipe(map(result => {
+
+      let settings = {
+        monthEnd: savedSettings.monthEnd,
+        monthStart: savedSettings.monthStart,
+        monthlyIncome: savedSettings.monthlyIncome
+      };
+      // @ts-ignore
+      localStorage.setItem('currentSettings', JSON.stringify(settings));
+      // @ts-ignore
+      localStorage.setItem('currentCategories', JSON.stringify(savedSettings.expenseCategories));
+
+    }));
   };
 
   getSettings(url) {
     return this.http.get(url).pipe(map(result => {
       // @ts-ignore
-      return result.data[0];
+      return result.data;
     }));
   }
 
