@@ -12,6 +12,7 @@ export class OrganizerService {
   tasks: Observable<ITasks[]>;
   userId: string;
   @Output() afterChange = new EventEmitter();
+  @Output() afterExpensesLoaded = new EventEmitter();
 
   todayDate = new Date();
   currentDayNumber: number = this.todayDate.getDate();
@@ -132,8 +133,8 @@ export class OrganizerService {
 
     return this.http.get(url, options).pipe(map((result) => {
       // @ts-ignore
-      localStorage.setItem('expensesByCategory', JSON.stringify(result.expensesByCategory));
-      // @ts-ignore
+      this.afterExpensesLoaded.emit(result.expensesByCategory);
+
       return result;
     }));
   }

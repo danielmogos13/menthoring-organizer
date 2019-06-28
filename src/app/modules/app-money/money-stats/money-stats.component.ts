@@ -50,14 +50,16 @@ export class MoneyStatsComponent implements OnInit {
 
       this.title = this.months[month-1] + " " + year;
 
-      this.expenseCategories = JSON.parse(localStorage.getItem('expensesByCategory'));
       this.totalExpenses = JSON.parse(localStorage.getItem('totalExpenses'));
       this.userSettings = JSON.parse(localStorage.getItem('currentSettings'));
 
       this.initMonthlyTotalExpenses();
-      this.initExpensesByCategory();
-
     });
+
+    this.organizerService.afterExpensesLoaded.subscribe((expenseCategories) => {
+      this.expenseCategories = expenseCategories;
+      this.initExpensesByCategory();
+    })
 
   }
 
@@ -136,8 +138,8 @@ export class MoneyStatsComponent implements OnInit {
       categoriesChartData.push(currentItem);
     }
 
-    categoriesChartData[0].sliced = true;
-    categoriesChartData[0].selected = true;
+    categoriesChartData[1].sliced = true;
+    categoriesChartData[1].selected = true;
 
     let chart = Highcharts.chart('categoryExpensesContainer', {
       chart: {
@@ -161,11 +163,11 @@ export class MoneyStatsComponent implements OnInit {
       credits: {
         enabled: false
       },
-
       plotOptions: {
         pie: {
           allowPointSelect: true,
           cursor: 'pointer',
+          center: ["50%", "50%"],
           showInLegend: true
         }
       },
