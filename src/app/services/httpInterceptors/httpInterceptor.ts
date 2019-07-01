@@ -24,7 +24,7 @@ import { map, catchError } from 'rxjs/operators'
       map((event: HttpEvent<any>) => {
 
         if (event instanceof HttpResponse) {
-          console.log('event--->>>', event);
+
         }
         if(event instanceof HttpErrorResponse){
 
