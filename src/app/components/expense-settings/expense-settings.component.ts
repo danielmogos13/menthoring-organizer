@@ -18,6 +18,7 @@ export class ExpenseSettingsComponent implements OnInit {
   addOnBlur = true;
   expenseCategories: any;
   totalExpenses: any;
+  saveIsLoading: boolean = false;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
 
@@ -65,7 +66,9 @@ export class ExpenseSettingsComponent implements OnInit {
       totalExpenses: this.totalExpenses
     };
 
+    this.saveIsLoading = true;
     this.organizerService.saveSettings(url, settings).subscribe( (result) => {
+      this.saveIsLoading = false;
       this.dialogRef.close("success");
     });
   }

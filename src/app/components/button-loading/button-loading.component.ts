@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'button-loading',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./button-loading.component.scss']
 })
 export class ButtonLoadingComponent implements OnInit {
+  @Input() color: string;
 
   constructor() { }
 

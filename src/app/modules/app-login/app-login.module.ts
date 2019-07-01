@@ -5,13 +5,12 @@ import {CommonCustomModulesModule} from '../app-common/commonCustomModules.modul
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
-import { ButtonLoadingComponent } from '../../components/button-loading/button-loading.component';
+
 
 @NgModule({
   declarations: [
     LoginComponent,
-    UserRegistrationComponent,
-    ButtonLoadingComponent
+    UserRegistrationComponent
   ],
   exports: [
     LoginComponent

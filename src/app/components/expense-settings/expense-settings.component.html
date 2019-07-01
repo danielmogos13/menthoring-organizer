@@ -44,6 +44,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
+  <button-loading [color]="'green'" *ngIf="saveIsLoading"></button-loading>
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [disabled]="formExpenseSettings.invalid" (click)="saveSettings()" cdkFocusInitial>Save</button>
 </mat-dialog-actions>

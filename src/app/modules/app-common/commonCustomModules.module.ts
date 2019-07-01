@@ -18,12 +18,14 @@ import {DeleteDialogComponent} from '../../components/delete-dialog/delete-dialo
 import {ActionPerformedComponent} from '../../components/action-performed/action-performed.component';
 import {RouterModule} from '@angular/router';
 import { AppTimeIntervalComponent } from '../../components/app-time-interval/app-time-interval.component';
+import { ButtonLoadingComponent } from '../../components/button-loading/button-loading.component';
 
 @NgModule({
   declarations: [
     DeleteDialogComponent,
     ActionPerformedComponent,
-    AppTimeIntervalComponent
+    AppTimeIntervalComponent,
+    ButtonLoadingComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +84,8 @@ import { AppTimeIntervalComponent } from '../../components/app-time-interval/app
     MatNativeDateModule,
     RouterModule,
     AppTimeIntervalComponent,
-    MatChipsModule
+    MatChipsModule,
+    ButtonLoadingComponent
   ],
   entryComponents: [DeleteDialogComponent, ActionPerformedComponent],
   providers: [

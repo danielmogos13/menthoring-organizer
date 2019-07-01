@@ -1,6 +1,5 @@
 .lds-ring {
   position: relative;
-  left: 40px;
   width: 25px;
   height: 25px;
   z-index: 1;
@@ -17,6 +16,11 @@
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #fff transparent transparent transparent;
 }
+
+.lds-ring.green div {
+  border-color: green transparent transparent transparent;
+}
+
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
 }
