@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { ITasks } from '../../interfaces/ITasks';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -131,12 +131,17 @@ export class OrganizerService {
         .append('monthEnd', String(monthEndTimestamp)),
     };
 
-    return this.http.get(url, options).pipe(map((result) => {
-      // @ts-ignore
-      this.afterExpensesLoaded.emit(result.expensesByCategory);
+    return this.http.get(url, options)
+      .pipe(map((result) => {
+          // @ts-ignore
+          this.afterExpensesLoaded.emit(result.expensesByCategory);
 
-      return result;
-    }));
+          return result;
+        }),
+        catchError((error: any) => {
+          throw error;
+        }));
+
   }
 
   getWeekExpenses (url, dates) {

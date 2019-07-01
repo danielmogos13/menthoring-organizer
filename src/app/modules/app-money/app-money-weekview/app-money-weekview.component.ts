@@ -191,6 +191,8 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
 
       this.loadingSpinner.hide();
 
+    }, error => {
+      this.isLoading = false;
     });
 
 
