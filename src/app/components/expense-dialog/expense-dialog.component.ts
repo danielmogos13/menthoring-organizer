@@ -51,9 +51,12 @@ export class ExpenseDialogComponent implements OnInit {
 
     this.tasksService.editExpense(this.expenseData, url)
       .subscribe(result => {
-        this.saveIsLoading = false;
-        this.dialogRef.close("success");
-      });
+          this.saveIsLoading = false;
+          this.dialogRef.close('success');
+        },
+        error => {
+          this.saveIsLoading = false;
+        });
   }
 
   addExpense () {

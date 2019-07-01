@@ -67,10 +67,13 @@ export class ExpenseSettingsComponent implements OnInit {
     };
 
     this.saveIsLoading = true;
-    this.organizerService.saveSettings(url, settings).subscribe( (result) => {
-      this.saveIsLoading = false;
-      this.dialogRef.close("success");
-    });
+    this.organizerService.saveSettings(url, settings).subscribe((result) => {
+        this.saveIsLoading = false;
+        this.dialogRef.close('success');
+      },
+      (error) => {
+        this.saveIsLoading = false;
+      });
   }
 
   add(event: MatChipInputEvent): void {

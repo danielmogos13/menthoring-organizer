@@ -169,6 +169,8 @@ export class OrganizerService {
       // @ts-ignore
       let totalExpenses = items.data.value.totalExpenses;
       localStorage.setItem('totalExpenses', totalExpenses);
+    }),catchError((error) => {
+      throw error;
     }));
   }
 
@@ -182,7 +184,10 @@ export class OrganizerService {
       // @ts-ignore
       let totalExpenses = result.data.value.totalExpenses;
       localStorage.setItem('totalExpenses', totalExpenses);
-    }));
+    }),
+      catchError((error) => {
+        throw error;
+      }));
   }
 
   addExpense (url, expense) {
@@ -231,6 +236,8 @@ export class OrganizerService {
 
       localStorage.setItem('currentCategories', JSON.stringify(result.data));
 
+    }), catchError((error) => {
+      throw error;
     }));
   };
 

@@ -39,9 +39,12 @@ export class DeleteDialogComponent implements OnInit {
     this.deleteIsLoading = true;
     this.tasksService.deleteExpense(this.data.expenseId, this.deleteExpenseUrl)
       .subscribe(result => {
-        this.deleteIsLoading = false;
-        this.dialogRef.close("success");
-    });
+          this.deleteIsLoading = false;
+          this.dialogRef.close('success');
+        },
+        (error) => {
+          this.deleteIsLoading = false;
+        });
   }
 
 
