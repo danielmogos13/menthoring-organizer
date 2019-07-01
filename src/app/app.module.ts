@@ -15,7 +15,8 @@ import {SideBarComponent} from './layout/side-bar/side-bar.component';
 import {LayoutComponent} from './layout/layout.component';
 import {AppContentComponent} from './layout/app-content/app-content.component';
 import {AppViewsComponent} from './layout/app-content/app-views/app-views.component';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpConfigInterceptor } from './services/httpInterceptors/httpInterceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {AppViewsComponent} from './layout/app-content/app-views/app-views.compon
   ],
   providers: [
     AuthGuard,
-    UserRole
+    UserRole,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
