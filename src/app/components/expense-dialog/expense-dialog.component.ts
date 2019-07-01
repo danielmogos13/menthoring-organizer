@@ -13,6 +13,7 @@ export class ExpenseDialogComponent implements OnInit {
   operation: string;
   formExpense: any;
   categories: any;
+  saveIsLoading: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<ExpenseDialogComponent>,
   @Inject(MAT_DIALOG_DATA) public data: any,
@@ -46,9 +47,11 @@ export class ExpenseDialogComponent implements OnInit {
     };
 
     const url = 'http://localhost:3000/money';
+    this.saveIsLoading = true;
 
     this.tasksService.editExpense(this.expenseData, url)
       .subscribe(result => {
+        this.saveIsLoading = false;
         this.dialogRef.close("success");
       });
   }
@@ -65,11 +68,12 @@ export class ExpenseDialogComponent implements OnInit {
       date: this.formExpense.value.expenseDate,
     };
 
+    this.saveIsLoading = true;
     this.tasksService.addExpense(url, this.expenseData).subscribe(result => {
+      this.saveIsLoading = false;
       this.dialogRef.close('success');
     });
 
   }
-
 
 }

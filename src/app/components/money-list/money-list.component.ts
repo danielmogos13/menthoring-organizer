@@ -26,6 +26,7 @@ export class MoneyListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ExpenseDialogComponent, {
       width: '450px',
+      disableClose: true,
       data: {
         operation: 'edit',
         expense: expense
@@ -33,8 +34,10 @@ export class MoneyListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.afterChange.emit();
-      this.openSnackBar("Expense edited");
+      if(result === "success"){
+        this.afterChange.emit();
+        this.openSnackBar("Expense edited");
+      }
     });
   }
 
@@ -42,6 +45,7 @@ export class MoneyListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '450px',
+      disableClose: true,
       data: {
         type: 'deleteExpense',
         title: 'Delete expense',
@@ -50,8 +54,12 @@ export class MoneyListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.afterChange.emit();
-      this.openSnackBar("Expense deleted");
+
+      if(result === "success"){
+        this.afterChange.emit();
+        this.openSnackBar("Expense deleted");
+      }
+
     });
   }
 

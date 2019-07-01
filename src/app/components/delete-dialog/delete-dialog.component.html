@@ -6,6 +6,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
+  <button-loading [color]="'green'" *ngIf="deleteIsLoading"></button-loading>
   <button mat-button mat-dialog-close>No</button>
   <button *ngIf="type === 'deleteTask'" mat-button (click)="confirmDeleteTask()" cdkFocusInitial>Yes</button>
   <button *ngIf="type === 'deleteExpense'" mat-button (click)="confirmDeleteExpense()" cdkFocusInitial>Yes</button>

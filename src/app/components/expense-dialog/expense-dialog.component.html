@@ -33,6 +33,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
+  <button-loading [color]="'green'" *ngIf="saveIsLoading"></button-loading>
   <button mat-button mat-dialog-close>Cancel</button>
   <button *ngIf="operation === 'edit'" mat-button [disabled]="formExpense.invalid" (click)="saveExpense()" cdkFocusInitial>Save</button>
   <button *ngIf="operation === 'add'" mat-button [disabled]="formExpense.invalid" (click)="addExpense()" cdkFocusInitial>Add</button>

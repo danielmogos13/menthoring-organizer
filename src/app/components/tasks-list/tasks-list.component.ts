@@ -59,9 +59,12 @@ export class TasksListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if(result === "success"){
+        console.log('The dialog was closed');
 
-      this.openSnackBar("Task has been deleted");
+        this.openSnackBar("Task has been deleted");
+      }
+
     })
   }
 
@@ -88,9 +91,13 @@ export class TasksListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
 
-      this.openSnackBar("Task copied");
+      if(result === "success") {
+        console.log('The dialog was closed');
+
+        this.openSnackBar("Task copied");
+      }
+
     })
 
   }

@@ -11,6 +11,7 @@ export class DeleteDialogComponent implements OnInit {
   type: string;
   title: string;
   deleteExpenseUrl: string;
+  deleteIsLoading: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>,
   @Inject(MAT_DIALOG_DATA) public data: any,
@@ -24,17 +25,22 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   confirmDeleteTask () {
-    this.dialogRef.close();
+    this.dialogRef.close("success");
+    this.deleteIsLoading = true;
 
-    this.tasksService.deleteTask(this.data.taskId);
+    this.tasksService.deleteTask(this.data.taskId).then((result) => {
+      this.deleteIsLoading = false;
+    });
   }
 
 
   confirmDeleteExpense () {
 
+    this.deleteIsLoading = true;
     this.tasksService.deleteExpense(this.data.expenseId, this.deleteExpenseUrl)
       .subscribe(result => {
-        this.dialogRef.close(result);
+        this.deleteIsLoading = false;
+        this.dialogRef.close("success");
     });
   }
 

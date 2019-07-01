@@ -28,6 +28,7 @@ export class AppMoneyComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ExpenseDialogComponent, {
       width: '450px',
+      disableClose: true,
       data: {
         operation: 'add',
         expense: expenseToAdd
