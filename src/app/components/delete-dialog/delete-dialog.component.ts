@@ -10,7 +10,6 @@ import {OrganizerService} from '../../services/organizerService/organizer.servic
 export class DeleteDialogComponent implements OnInit {
   type: string;
   title: string;
-  deleteExpenseUrl: string;
   deleteIsLoading: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>,
@@ -21,7 +20,6 @@ export class DeleteDialogComponent implements OnInit {
 
     this.title = this.data.title;
     this.type = this.data.type;
-    this.deleteExpenseUrl =  'http://localhost:3000/money';
   }
 
   confirmDeleteTask () {
@@ -37,7 +35,7 @@ export class DeleteDialogComponent implements OnInit {
   confirmDeleteExpense () {
 
     this.deleteIsLoading = true;
-    this.tasksService.deleteExpense(this.data.expenseId, this.deleteExpenseUrl)
+    this.tasksService.deleteExpense(this.data.expenseId)
       .subscribe(result => {
           this.deleteIsLoading = false;
           this.dialogRef.close('success');

@@ -37,11 +37,9 @@ export class AppMoneyDayViewComponent implements OnInit, OnDestroy {
   getExpenses (date) {
 
     this.expenses = [];
-    const url = 'http://localhost:3000/money';
-
 
     this.isLoading = true;
-    this.tasksService.getDayExpenses(url, date).subscribe(
+    this.tasksService.getDayExpenses(date).subscribe(
       (response) => {
 
         this.isLoading = false;

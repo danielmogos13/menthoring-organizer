@@ -32,6 +32,8 @@ export class ExpenseDialogComponent implements OnInit {
       expenseCategory: new FormControl(this.expenseData.category, Validators.minLength(2)),
       expenseDate: new FormControl(new Date(this.expenseData.date), Validators.required),
     });
+
+    this.onFormChanges();
   }
 
 
@@ -46,10 +48,9 @@ export class ExpenseDialogComponent implements OnInit {
       _id: this.data.expense._id
     };
 
-    const url = 'http://localhost:3000/money';
     this.saveIsLoading = true;
 
-    this.tasksService.editExpense(this.expenseData, url)
+    this.tasksService.editExpense(this.expenseData)
       .subscribe(result => {
           this.saveIsLoading = false;
           this.dialogRef.close('success');
@@ -60,7 +61,6 @@ export class ExpenseDialogComponent implements OnInit {
   }
 
   addExpense () {
-    const url = 'http://localhost:3000/money';
 
     // @ts-ignore
     this.expenseData = {
@@ -72,11 +72,17 @@ export class ExpenseDialogComponent implements OnInit {
     };
 
     this.saveIsLoading = true;
-    this.tasksService.addExpense(url, this.expenseData).subscribe(result => {
+    this.tasksService.addExpense(this.expenseData).subscribe(result => {
       this.saveIsLoading = false;
       this.dialogRef.close('success');
     });
 
+  }
+
+  onFormChanges () {
+    this.formExpense.valueChanges.subscribe(val => {
+      this.dialogRef.disableClose = true;
+    });
   }
 
 }

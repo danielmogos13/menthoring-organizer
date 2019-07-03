@@ -26,7 +26,6 @@ export class MoneyListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ExpenseDialogComponent, {
       width: '450px',
-      disableClose: true,
       data: {
         operation: 'edit',
         expense: expense

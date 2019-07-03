@@ -4,6 +4,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { ITasks } from '../../interfaces/ITasks';
 import {catchError, map} from 'rxjs/operators';
+import {AppConstants} from '../../app-constants.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class OrganizerService {
   currentDayString: string = this.currentDayNumber < 10 ? "0" + this.currentDayNumber: this.currentDayNumber.toString();
   currentMonth: string = (this.todayDate.getMonth() + 1).toString();
   currentYear: number = this.todayDate.getFullYear();
+  expenseUrl = AppConstants.expensesAPI;
+  settingsUrl = AppConstants.expensesSettingsAPI;
 
   private dateSubject = new BehaviorSubject<string>(this.currentDayNumber + '/' + this.currentMonth + "/" + this.currentYear);
   currentDate = this.dateSubject.asObservable();
@@ -113,7 +116,7 @@ export class OrganizerService {
     ).valueChanges()
   }
 
-  getDayExpenses (url, date) {
+  getDayExpenses (date) {
     const timestamp = this.getTimestamp(date);
 
     let monthStartPart = date.split("/");
@@ -131,7 +134,7 @@ export class OrganizerService {
         .append('monthEnd', String(monthEndTimestamp)),
     };
 
-    return this.http.get(url, options)
+    return this.http.get(this.expenseUrl, options)
       .pipe(map((result) => {
           // @ts-ignore
           this.afterExpensesLoaded.emit(result.expensesByCategory);
@@ -144,7 +147,7 @@ export class OrganizerService {
 
   }
 
-  getWeekExpenses (url, dates) {
+  getWeekExpenses (dates) {
     const timestamps = [];
 
     for(let index = 0; index < dates.length; index++){
@@ -157,14 +160,14 @@ export class OrganizerService {
       params: new HttpParams().set('dates', timestamps)
     };
 
-    return this.http.get(url, options);
+    return this.http.get(this.expenseUrl, options);
   }
 
-  editExpense (expense, url) {
+  editExpense (expense) {
     const dateString = this.getDateString(expense.date);
     expense.date = new Date(dateString).getTime();
 
-    return this.http.post(url, {expense: expense}).pipe(map((items) => {
+    return this.http.post(this.expenseUrl, {expense: expense}).pipe(map((items) => {
 
       // @ts-ignore
       let totalExpenses = items.data.value.totalExpenses;
@@ -174,13 +177,13 @@ export class OrganizerService {
     }));
   }
 
-  deleteExpense (expenseId, url) {
+  deleteExpense (expenseId) {
 
     const options = {
       params: new HttpParams().set('expenseId', expenseId)
     };
 
-    return this.http.delete(url, options).pipe(map((result) => {
+    return this.http.delete(this.expenseUrl, options).pipe(map((result) => {
       // @ts-ignore
       let totalExpenses = result.data.value.totalExpenses;
       localStorage.setItem('totalExpenses', totalExpenses);
@@ -190,11 +193,11 @@ export class OrganizerService {
       }));
   }
 
-  addExpense (url, expense) {
+  addExpense (expense) {
     const dateString = this.getDateString(expense.date);
     expense.date = new Date(dateString).getTime();
 
-    return this.http.put(url, {expense: expense}).pipe(map(items => {
+    return this.http.put(this.expenseUrl, {expense: expense}).pipe(map(items => {
       // @ts-ignore
       let totalExpenses = items.data.value.totalExpenses + expense.totalPaid;
       localStorage.setItem('totalExpenses', totalExpenses);
@@ -221,9 +224,9 @@ export class OrganizerService {
     return new Date(dateString).getTime();
   };
 
-  saveSettings = (url, settings) => {
+  saveSettings = (settings) => {
     let savedSettings = settings;
-    return this.http.post(url, {settings: savedSettings}).pipe(map(result => {
+    return this.http.post(this.settingsUrl, {settings: savedSettings}).pipe(map(result => {
 
       let settings = {
         monthEnd: savedSettings.monthEnd,
@@ -241,8 +244,8 @@ export class OrganizerService {
     }));
   };
 
-  getSettings(url) {
-    return this.http.get(url).pipe(map(result => {
+  getSettings() {
+    return this.http.get(this.settingsUrl).pipe(map(result => {
       // @ts-ignore
       return result.data;
     }));

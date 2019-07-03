@@ -34,7 +34,6 @@ export class AppContentComponent implements OnInit {
 
   showExpenseSettingsModal () {
     const dialogRef = this.dialog.open(ExpenseSettingsComponent, {
-      disableClose: true,
       width: '450px',
     });
 

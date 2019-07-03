@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, IterableDiffers, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrganizerService} from '../../services/organizerService/organizer.service';
 import {MatChipInputEvent, MatDialogRef} from '@angular/material';
@@ -29,8 +29,6 @@ export class ExpenseSettingsComponent implements OnInit {
 
     this.expenseCategories = [];
 
-    const url = 'http://localhost:3000/settings';
-
     for(let index = 0; index < 31; index++) {
       this.monthDays.push(index+1);
     }
@@ -41,7 +39,7 @@ export class ExpenseSettingsComponent implements OnInit {
       monthEnd: new FormControl("", Validators.minLength(2)),
     });
 
-    this.organizerService.getSettings(url).subscribe(data => {
+    this.organizerService.getSettings().subscribe(data => {
       let settings = data.settings[0];
 
       this.formExpenseSettings.patchValue({
@@ -52,11 +50,13 @@ export class ExpenseSettingsComponent implements OnInit {
 
       this.expenseCategories = this.expenseCategories.concat(data.categories);
       this.totalExpenses = settings.totalExpenses;
-    })
+
+      this.onFormChanges();
+    });
+
   }
 
   saveSettings () {
-    const url = 'http://localhost:3000/settings';
 
     const settings = {
       monthlyIncome: this.formExpenseSettings.value.monthlyIncome,
@@ -67,7 +67,7 @@ export class ExpenseSettingsComponent implements OnInit {
     };
 
     this.saveIsLoading = true;
-    this.organizerService.saveSettings(url, settings).subscribe((result) => {
+    this.organizerService.saveSettings(settings).subscribe((result) => {
         this.saveIsLoading = false;
         this.dialogRef.close('success');
       },
@@ -86,6 +86,7 @@ export class ExpenseSettingsComponent implements OnInit {
 
     if ((value || '').trim() && !exists && categoriesLength < maxLength) {
       this.expenseCategories.push({name: value.trim()});
+      this.dialogRef.disableClose = true;
     }
 
     // Reset the input value
@@ -100,5 +101,12 @@ export class ExpenseSettingsComponent implements OnInit {
     if (index >= 0) {
       this.expenseCategories.splice(index, 1);
     }
+    this.dialogRef.disableClose = true;
+  }
+
+  onFormChanges() {
+    this.formExpenseSettings.valueChanges.subscribe(val => {
+      this.dialogRef.disableClose = true;
+    });
   }
 }

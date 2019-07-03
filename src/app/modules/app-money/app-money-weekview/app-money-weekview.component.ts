@@ -126,10 +126,8 @@ export class AppMoneyWeekviewComponent implements OnInit, OnDestroy {
     }
 
     this.loadingSpinner.show();
-    const url = 'http://localhost:3000/money';
 
-    this.getDataObservable = this.organizerService.getWeekExpenses(url, weekdays).subscribe(response => {
-
+    this.getDataObservable = this.organizerService.getWeekExpenses(weekdays).subscribe(response => {
 
       let dataNodes = this.treeControl.dataNodes;
 
